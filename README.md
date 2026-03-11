@@ -1,6 +1,8 @@
 # TrustScore-RAG: Agentic Escalation Engine
 **TikTok Trust & Safety APM Portfolio Project**
 
+![Portfolio Demo](./public/portfolio_demo.gif)
+
 ## 1. Executive Summary
 The rapid accessibility of generative AI and coordination of FIMI (Foreign Information Manipulation and Interference) networks have dramatically escalated content safety threats, specifically in areas of civic integrity and medical misinformation. Traditional automated content moderation—relying on binary classifications—fundamentally struggles with deep context and policy ambiguity. This results in either unacceptable over-enforcement (brand damage/loss of user agency) or dangerous under-enforcement (harm scaling globally).
 
