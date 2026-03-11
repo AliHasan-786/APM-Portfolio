@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { TriageSimulator } from "@/components/TriageSimulator";
-import { EvaluationLab } from "@/components/EvaluationLab";
+import { PolicyOpsPlatform } from "@/components/PolicyOpsPlatform";
 import { ShieldAlert, FlaskConical, Activity } from "lucide-react";
 
 export default function Home() {
-  const [activeView, setActiveView] = useState<'simulator' | 'lab'>('simulator');
+  const [activeView, setActiveView] = useState<'simulator' | 'lab'>('lab');
 
   return (
     <main className="min-h-screen bg-black text-white selection:bg-tiktok-cyan selection:text-black">
@@ -22,13 +22,13 @@ export default function Home() {
               onClick={() => setActiveView('simulator')}
               className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-2 ${activeView === 'simulator' ? 'bg-white/10 text-white' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`}
             >
-              <Activity className="w-4 h-4" /> Simulator
+              <Activity className="w-4 h-4" /> AI Evaluation Demo
             </button>
             <button
               onClick={() => setActiveView('lab')}
               className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-2 ${activeView === 'lab' ? 'bg-white/10 text-tiktok-cyan' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`}
             >
-              <FlaskConical className="w-4 h-4" /> PM Eval Lab
+              <FlaskConical className="w-4 h-4" /> PM Ops Console
             </button>
             <div className="w-px h-4 bg-white/20 mx-2 hidden md:block"></div>
             <a href="https://github.com/AliHasan-786/TrustScore" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors hidden md:block">GitHub</a>
@@ -44,7 +44,7 @@ export default function Home() {
 
       {/* Content */}
       <div className="pt-14">
-        {activeView === 'simulator' ? <TriageSimulator /> : <EvaluationLab />}
+        {activeView === 'simulator' ? <TriageSimulator /> : <PolicyOpsPlatform />}
       </div>
     </main>
   );

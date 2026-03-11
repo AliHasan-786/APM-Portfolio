@@ -49,7 +49,7 @@ const lppSchema: Schema = {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { claim } = body;
+        const { claim, systemInstruction: customInstruction } = body;
 
         if (!claim) {
             return NextResponse.json({ error: 'Claim text is required' }, { status: 400 });
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
         }
 
-        const systemInstruction = `
+        const defaultInstruction = `
       You are the core logic engine of TrustScore-RAG, a state-of-the-art content moderation routing system for a major social media platform (like TikTok).
       Your job is NOT just to moderate content, but to calculate an LLM Performance Predictor (LPP) score.
       
@@ -88,6 +88,8 @@ export async function POST(request: Request) {
          
       Always respond in the requested JSON schema.
     `;
+
+        const systemInstruction = customInstruction || defaultInstruction;
 
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
