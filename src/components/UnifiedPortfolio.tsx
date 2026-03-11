@@ -23,7 +23,7 @@ function HeroSection() {
         <Badge variant="outline" className="border-tiktok-cyan/40 text-tiktok-cyan px-4 py-1.5 text-sm uppercase tracking-widest font-semibold">
           Trust & Safety Product Management Portfolio
         </Badge>
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
           <span className="text-white">TrustScore</span>
           <span className="text-tiktok-cyan">-RAG</span>
         </h1>
