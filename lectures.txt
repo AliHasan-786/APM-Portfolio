@@ -1,0 +1,5456 @@
+CS 5342 / INFO 5320 [1]
+
+Introduction to T&S:
+History, Motivations and Practices
+
+Aug 26, 2025
+Mantzarlis
+
+Your instructors
+
+How we got here: Alexios
+
+How we got here: Tom
+● Academic computer security researcher
+○ ~7 years of grad school at UC Davis & UC San Diego
+○ 4.5 years as professor at University of Wisconsin-Madison
+○ 10 years as professor at Cornell Tech
+○ Some industry experience (most recently: Cloudflare)
+● Applied & theoretical cryptography, cloud computing
+security, machine learning security, authentication
+● Tech abuse and interpersonal violence
+
+How we got here: Sharon
+●
+●
+●
+
+Final-year PhD Candidate in Information Science at Cornell Tech
+Research: Human computer interactions + accessibility + digital safety
+Dissertation: Understanding ableism (disability-related hate) on social
+media & designing platforms to mitigate the harm
+
+Education
+B.S in Human Centered
+Design & Engineering (HCI
+emphasis)
+
+Industry
+Research Coordinator in
+the Experience Design
+Studio
+
+Academia
+Information Science
+Industry
+Student Researcher, Google
+
+Course objectives
+
+🤬
+
+🛡️
+
+⚖️
+
+👩‍💻
+
+Study common techenabled harms
+
+Analyze prevention
+and mitigation tools
+
+Grapple with the
+ethical trade-offs of
+content moderation
+
+Learn how to build
+algorithmic T&S
+interventions
+
+But first, the readings
+
+How well did everyone do at pretend T&S?
+
+Schedule, policies, grading, et al.
+
+Where to find everything
+Overview and links to everything: github.com/tomrist/cs5342-fall2025
+Course calendar: Trust and Safety: Platforms, Policies, Products
+
+Slides will be shared before every class.
+Blurbs for guest lectures will be submitted on Canvas.
+Assignments will be submitted and graded through Gradescope.
+
+Course schedule
+
+Aug 26 - Sep 16
+
+History, frameworks, tools
+
+Sep 18 - Nov 4
+
+Harm deep dives
+
+Nov 6 - Nov 20
+
+LLMs and moderation, self-care
+
+Apr 17 - May 6
+
+The evolving landscape of T&S
+
+A range of industry experts will join us
+
++1 or 2 more
+TBA!
+
+Course activities
+Activity
+
+Overview
+
+Value
+
+1: T&S Foundations
+(individual)
+
+Students will be asked to apply key T&S frameworks to hypothetical and
+real world examples. The assignment is composed of ten multiple choice
+and five 150-word answer questions.
+
+20%
+
+2: Policy proposal
+(group)
+
+Students will develop a policy document that describes a Trust & Safety
+intervention on the platform BlueSky. This will include a definition of the
+type of content they want to encourage or discourage, a threat modeling
+assessment, and a full set of prevention and mitigation measures including
+product design, algorithmic interventions and manual enforcement
+guidelines.
+
+30%
+
+3: Automated
+moderator
+(group)
+
+Students will build a labeler on BlueSky that automatically labels certain
+types of accounts / posts.
+
+30%
+
+Class participation
+
+Students will be expected to prepare substantive questions for guest
+lecturers that connect to themes discussed in class. There will also be a
+handful of other light-weight assignments, most notably readings that you
+will be asked to discuss at the beginning of most classes.
+
+20%
+
+Assmts 2 & 3: Designing and building a T&S intervention
+Groups will be randomly assigned with a view to guaranteeing high Python
+proficiency across the board. You will be asked to explain how work was divided.
+
+Important Policies: Participation
+Please introduce yourself when contributing to class (at least for the first few weeks)!
+Component
+
+Description
+
+Weight
+
+Reading
+assignment
+discussion
+
+Capably provided a description and key takeaway for a class reading when
+called upon in class (once a term, at random)
+
+20%
+
+Fair time
+contribution to
+group
+
+Contributed equitably to the group assignment as rated by peers (based on
+modal distribution above 3 / 5)
+
+30%
+
+Other class
+contributions
+
+Contributed to at least 2 lectures with a well-developed and relevant
+comment, question or answer
+
+30%
+
+Guest lecture
+summaries
+
+Submitted a key quote and brief takeaway for at least 6 out of the 7 guest
+speakers.
+
+20%
+
+Important Policies: Shocking content
+The course will discuss and occasionally expose you to harassing, hateful,
+terrorist, and exploitative content in order to equip you with an
+understanding of what it is that T&S teams aim to prevent and mitigate. We
+will never do so in a gratuitous manner. You may get up and exit the hall at
+any time if it is disturbing to you.
+
+Important Policies: AI policy
+If you use LLMs in your assignments, disclose what you used and how. We
+prefer not to use AI detectors because of their error rates. However, we
+have noticed that chatbot responses do not tend to do particularly well on
+the type of questions we ask.
+
+More T&S @ Cornell Tech outside of this class
+SETS certificate
+Must take at least three of:
+● T&S: Platforms, Policies, Products
+● Security & Privacy Concepts in the Wild
+● Privacy in the Digital Age
+● Blockchains, Cryptocurrencies, and Smart
+Contracts
+● Applied Cryptography
+● Trustworthy AI
++ at least one relevant law class
+Internet Law, Privacy and Security (LAW 6568),
+Content Moderation and Platform Regulation (LAW
+7710)*, Cybersecurity and Data Privacy Law &
+Regulation (LAW 6273), AI Law and Policy (LAW
+6146), LAW 6105 Crypto and Blockchain Finance, Law
+and Policy: Deciphering DeFi
+
+On campus activities
+
+SETS AI Content Red Team Clinic
+Paid opportunity open to students who
+score highest in Assignment 1.
+Careers panel (Oct. 15)
+Four industry professionals will share
+their trajectory. Followed by a
+networking reception.
+T&S Hackathon
+Hands-on days organized by 2nd year
+students who took the T&S course.
+
+What brings you here?
+
+Today’s learning objectives
+
+Qs you should be able to answer by the end of this class:
+What is Trust & Safety?
+How does T&S materialize in different digital spaces?
+Why does T&S matter?
+
+What is Trust & Safety?
+
+A practitioner’s definition of Trust & Safety
+
+“the part of a digital service’s operations that focuses on
+understanding and addressing the harmful content or
+conduct associated with that service”
+(Digital Trust & Safety Partnership)
+
+An academic’s definition of Trust & Safety
+
+“Trust and safety is the study of how people abuse the internet
+to cause real human harm, often using products the way they
+are designed to work”
+(S. Grossman, Journal of Online Trust & Safety)
+
+A more memorable formulation
+
+“The internet’s erosion of norms as a constraint on human
+behavior unleashed a flood of speech in the lawful-but-awful
+category: material that cannot be prohibited by law but that
+profoundly violates many people’s sense of decency, morality,
+or justice.”
+(D. Keller, Stanford Cyber Policy Center)
+
+Trust & Safety responsibilities
+ANTICIPATE HARMS
+> Run risk assessments for new products or features (for example, through red teaming or structured
+evals)
+> Study rising dangerous trends on similar products and in society as a whole (for example, by
+monitoring extremist groups on Telegram for new hate terms)
+
+INCENTIVIZE SAFE EXPERIENCES
+> Help build classifiers and other mechanisms to downrank harmful content and promote useful
+material (for example, Google Search’s “EAT” framework)
+> Design, test and launch interventions that might reduce the likelihood of users engaging in harmful
+behavior (for example, Twitter’s defunct suggestions to read an article before retweeting)
+
+MITIGATE HARMS
+> Define unacceptable content, user and product behaviors (typically through a centralized content
+policy)
+> Respond to user reports and mandated takedown requests (typically through a flagging mechanism on
+individual posts/accounts)
+
+Trust & Safety roles
+
+Trust & Safety is everywhere
+
+Take a heterogeneous group of popular apps
+
+How many have to deal with T&S issues?
+
+Trust & Safety in practice
+
+Your platform has a fake news problem. Fix it.
+
+Where do you intervene for maximum efficacy?
+Telemundo logo
+
+Claim attributed
+to Cristiano
+Ronaldo
+
+AI avatar of Jorge
+Ramos
+
+Comments believing
+the misinformation
+
+Harder challenge: Disrupting the incentive system
+
+A
+(highly condensed and US-centric)
+
+history of T&S
+
+~1990s: (Almost) everything goes
+SECTION 230, CDA Act 1996
+🛡️ “No provider or user of an interactive
+computer service shall be treated as the
+publisher or speaker of any information
+provided by another information content
+provider.”
+🗡️ “No provider or user of an interactive
+computer service shall be held liable on account
+of any action voluntarily taken in good faith to
+restrict access to or availability of material
+that the provider or user considers to be [...]
+objectionable
+
+~2000s: Evolving out of the help desk
+“Even though
+my personal
+political
+leanings are
+democratic, I
+think this app
+will be
+offensive to
+roughly half
+our customers.
+What’s the
+point?”
+Steve
+
+~2010s: Professionalization and front pages
+
+~2020s: Power and pushback
+
+There’s no escaping T&S
+
+Why does T&S matter?
+
+Trust & Safety is much more than incident response
+
+"Moderation is not an ancillary aspect of what platforms do.
+It is essential, constitutional, definitional. Not only can
+platforms not survive without moderation, they are not
+platforms without it."
+(Custodians of the Internet, T. Gillespie)
+
+Trust & Safety is a representation of your product’s ethos
+
+CS 5342 / INFO 5320 [2]
+
+T&S frameworks: harm types and
+countermeasures
+
+Aug 28, 2025
+Mantzarlis
+
+Reminders
+
+Reminders
+● You can find everything here:
+https://github.com/tomrist/cs5342-fall2025
+● Do not sit in the last 4 rows. Very easy way to making it
+hard for us to take note of whether you are participating.
+● Please state your name clearly when you intervene in
+class for the first few weeks so we get to know you and
+we can take note for your participation
+● If we call on you and you haven’t done the reading you
+have another chance later in the year (still at random)
+● We will be asking you to rate your Python capabilities for
+the group assignment in a survey soon
+
+Today’s learning objectives
+
+Q.s you should be able to answer by the end of this class:
+What are prevalent categories of online harms?
+When can / should a digital tool intervene on a specific harm?
+What are the main levers of action for Trust & Safety teams?
+
+But first, the readings
+
+Categorizing online harms
+
+All established digital services provide their definitions
+
+All established digital services provide their definitions
+
+All established digital services provide their definitions
+
+Regulators also increasingly define online harms
+Recent laws are requiring platforms to prevent, mitigate, and report on the
+state of online harms on their services.
+Online Safety Act: Focuses on cyberbullying, adult cyber-abuse, non-consensual
+sharing of intimate images, and material depicting abhorrent violent conduct.
+Digital Services Act: Covers freedom of expression and pluralism, discrimination,
+consumer protection, children’s rights, public security and electoral processes,
+gender-based violence, public health, and mental and physical wellbeing.
+Online Safety Act: Includes cyberbullying, sexual or violent behaviour and acts,
+suicide and self-harm, vice and organised crime, products/acts that endanger public
+health.
+Online Safety Act: Covers CSAM, violence, facilitating suicide, fraud, and terrorism.
+Might expand to crisis response protocols
+
+Sometimes policies are essentially identical (e.g. CSAM)
+This is most common in spaces with extensive legal grounds like CSAM, but can also happen
+when policies arise after a major cross-platform incident, like COVID-19.
+
+We prohibit the use of Image
+Creator to produce … content that
+describes, features, or promotes
+sexual exploitation, including but
+not limited to … child sexual
+exploitation, abuse, child
+sexualization
+
+ChatGPT users are prohibited from
+creating or distributing content
+that promotes harm … This
+includes, but is not limited to …
+non-consensual intimate imagery
+(NCII), and content that sexualizes
+children
+
+Gemini should not generate
+outputs, including Child Sexual
+Abuse Material, that exploit or
+sexualize children.
+
+More often harms are variably defined
+
+Explicit content meant to be
+sexually gratifying is not allowed on
+YouTube.
+
+These rules do not prevent you from
+sharing: Consensual adult content that is
+clearly labeled and follows our policies.
+
+Many policies are a “tombstone”
+
+Activity
+Find the policy framework of a platform or digital tool of your
+choice (be creative).
+Typically saved as
+{[content | product | community | safety] AND [guidelines | policy]}
+
+Isolate an individual policy that you find surprising or particularly
+well-defined.
+
+A non-exhaustive taxonomy of harms for this course
+●
+●
+●
+●
+
+●
+
+●
+
+Harassment: 1-to-1 or many-on-1 emotional abuse aimed at scaring, embarrassing or
+humiliating its target
+Unwanted sexual content: dissemination or exposure of sexually explicit content in a way
+that is undesired by the recipient or the subject of the material
+Scams and fraud: behaviors or content that lead to financial loss through deceptive
+means.
+Violence, hate, and terrorism: wanton dissemination or glorification of material that is
+gory in nature, targets a protected demographic group, or promotes a terrorist
+organization.
+Misinformation and influence operations: false or misleading content, typically around
+sensitive verticals like health or elections; and content that masquerades as originating
+from one source when it is actually a concealed effort to influence public opinion
+Bias: explicit or implicit preference for a protected demographic group or other sensitive
+category
+
+Frameworks for T&S action
+
+Three frameworks to guide us
+Severity x Responsibility (SxR): Helps you determine
+whether to intervene based on the type of harm and the
+nature of your service.
+Actors, Behaviors, Content (ABC): Helps you locate on what
+to intervene.
+Anticipate, Incentivize, Mitigate (AIM): Helps you think how
+to intervene.
+
+Severity x Responsibility
+(SxR)
+
+Determining the scope of T&S interventions
+Trust & Safety can be thought of as an exercise in preventing and
+mitigating digital harms.
+
+But what is a digital harm? And when is it your platform’s
+responsibility?
+
+Severity of the harm
+A digital tool’s likelihood of intervening will depend on the type and immediacy
+of the harm.
+
+Emotional
+
+Civic
+
+Financial
+
+Physical
+
+toxicity,
+harassment,
+misinfo
+
+election
+disinfo, IOs,
+hate speech
+
+scams, fraud,
+extortion
+
+violence,
+dangerous
+health, selfharm
+
+typically greater
+likelihood of intervening
+but the types of harm
+can overlap / bleed into
+each other
+
+Responsibility over the harm
+A digital tool’s responsibility to intervene will also depend on where they fit
+on the “content moderation stack”.
+Platform: The tool amplifies or
+enables the harmful content through
+algorithmic means or monetization.
+typically greater
+likelihood of
+intervening but the
+categories are far
+more fluid than it
+may seem
+
+Interface: The tool is a setting through
+which the harmful content can reach
+users
+Provider: The tool provides part of the
+infrastructure that the publisher of the
+harmful content needs.
+
+The Severity x Responsibility (SxR) framework
+The moderation
+zone
+
+Platform
+
+Interface
+Provider
+
+Emotional
+Civic
+Financial
+Physical
+
+A digital service can be many things at once
+
+A digital service can be many things at once
+
+Decisions like this embody the content moderation stack
+
+Providers do get dragged in as a last resort
+
+Where would you place
+these T&S decisions?
+
+Let’s use this together
+
+Platform
+
+Interface
+
+Provider
+
+Emotional
+Civic
+Financial
+Physical
+
+Actors, Behaviors, Content
+(ABC)
+
+Understanding the object of moderation
+On a typical digital harm, you have three ways to intervene (h/t Camille François)
+
+Actors
+
+Behaviors
+
+Content
+
+Ban a user, restrict their
+capabilities, or signpost
+them in a certain way.
+
+Prohibit a certain type of
+action(s) that is closely
+connected with harm.
+
+Delete, label, or remove
+single or multiple iterations
+of the harmful content.
+
+Pros: Most comprehensive
+channel to eliminate harm
+and set ground rules.
+
+Pros: Content-agnostic and
+‘objective,’ easier to
+automate
+
+Pros: Can be very precise
+and allow tailoring to
+context.
+
+Cons: Most draconian, risk
+of introducing bias and
+greatest chilling effects on
+speech
+
+Cons: Fails to recognize
+complexity of certain
+behaviors (e.g. anonymous
+activists, weather bots)
+
+Cons: Most time-consuming
+and requires extensive
+cultural/social expertise
+
+Google’s application of ABC vs. Ukraine war
+disinformation
+Actors
+
+Behaviors
+
+Content
+
+Ban Russian state media
+actors from being
+recommended on Discover,
+News, and YouTube (e.g.
+RT)
+
+Disallow accounts that
+misrepresent or hide
+ownership or primary
+purpose, or engage in false
+or coordinated behavior to
+deceive, defraud, or
+mislead. Investigate and
+block violations (e.g.
+Doppelganger).
+
+Ban content that denies an
+atrocity took place (e.g.
+Bucha).
+
+Prevent monetization of
+any Russian domain.
+Label Russian state-media
+in information panels on
+YouTube.
+
+Anticipate, Incentivize, Mitigate
+(AIM)
+
+The AIM framework
+ANTICIPATE HARMS
+
+> Create a risk assessment for a new product or feature
+> Study rising dangerous trends on similar products and in society as a whole
+
+INCENTIVIZE SAFE EXPERIENCES
+
+> Build classifiers and other mechanisms to downrank harmful content
+> Design, test and launch interventions that might reduce the likelihood of users engaging in
+harmful behavior
+
+MITIGATE HARMS
+
+> Define unacceptable content, user and product behaviors
+> Respond to user reports and mandated takedown requests
+
+AIM vs bullying on Instagram
+
+Anticipate
+Study slang and
+neologisms for new
+bullying terms, and update
+classifiers and AI
+interventions detecting
+possible harassment.
+
+Incentivize
+Encourage posters to
+reconsider language
+before posting
+
+Mitigate
+Provide additionals tools
+for users who worry about
+real-life consequences of
+blocking a user, like
+‘restricting’ (only the
+harasser will see the post)
+
+We will return to these frameworks frequently
+Severity x Responsibility (SxR): Helps you determine
+whether to intervene based on the type of harm and the
+nature of your service.
+Actors, Behaviors, Content (ABC): Helps you locate on what
+to intervene.
+Anticipate, Incentivize, Mitigate (AIM): Helps you think how
+to intervene.
+
+In the next episodes of CS 5342…
+
+Coming up:
+
+Sep. 2
+(Tue)
+Sep. 4
+(Thu)
+
+Beyond the
+ban hammer
+
+Trust & Safety product and engineering teams don't just react to
+digital harms, they also work to prevent them -- or at least
+reduce their likelihood. This can happen through a variety of
+channels including threat modeling and risk assessments,
+safety by design, red teaming, and user-facing product
+interventions that include labeling, nudges and restrictions on
+reach.
+
+End-to-end
+moderation
+
+In this class we'll look at reporting workflows in some detail and
+break down the moderation aspect of T&S into its main
+component parts: detect, review and enforce.
+
+CS 5342 / INFO 5320 [3]
+
+Beyond the ban hammer
+
+Sep 2, 2025
+Mantzarlis
+
+Housekeeping
+
+Hello! Have we met?
+
+Office hours
+●
+●
+●
+
+Office hours are by appointment.
+Email amantzarlis@cornell.edu, ristenpart@cornell.edu and
+ssh247@cornell.edu with details on the request and we will arrange time. (If
+demand surges, we will set up more fixed times).
+We will publish dedicated office hours for Assignment 3 closer to the date.
+
+Today’s learning objectives
+
+Q.s you should be able to answer by the end of this class:
+How does a T&S team support a product team before and
+during launch to minimize potential harm and unintended
+consequences?
+Beyond removing harmful content or an abusive user, what
+interventions can T&S implement to reduce digital harms?
+
+The “A” and “I” of the AIM framework
+ANTICIPATE HARMS
+
+> Create a risk assessment for a new product or feature
+> Study rising dangerous trends on similar products and in society as a whole
+INCENTIVIZE SAFE EXPERIENCES
+
+> Build classifiers and other mechanisms to downrank harmful content
+> Design, test and launch interventions that might reduce the likelihood of users engaging in
+harmful behavior
+
+MODERATE HARMFUL CONTENT
+
+> Define unacceptable content, user and product behaviors
+> Respond to user reports and mandated takedown requests
+
+Safety by design and moving T&S “upstream”
+Shifting Trust and Safety from
+purely reactive to anticipatory and
+proactive.
+Introducing tools that are less
+punitive and more pro-social.
+Preventing/reducing, rather than
+remediating.
+
+Image credit: TSPA Curriculum
+
+But first, the readings
+
+Anticipating harms
+
+Products break in unintended ways
+You build with an intended use case. But the real world doesn’t follow
+those rules.
+1. Sometimes well-intentioned users behave irrationally
+2. Sometimes ill-intentioned users behave rationally
+3. Sometimes new products provide unanticipated abuse vectors
+You will never eliminate all abuse vectors. But you should feel
+comfortable with those that remain open.
+
+Unintended breaking points
+
+How might
+this have
+been
+avoided?
+
+How might
+this have
+been
+avoided?
+
+How might
+this have
+been
+avoided?
+
+Especially easy / relevant with AI
+
+(It gets more serious)
+
+Trust & Safety risk assessments
+New product features go through a range of reviews (privacy, legal). At large content
+platforms that typically includes safety reviews (more or less formalized).
+Methods:
+● Structured evaluations (“evals”) against existing policy and known user behaviors
+● Threat intelligence and crisis scenario planning
+● Adversarial red teaming
+Outcomes:
+● Updates in product design
+● New safety guardrails
+● Delaying or even canceling launch
+
+Structured evals
+Conducted on an internal version of the tool or a small pilot (e.g. <1% of users)
+
+Representative set:
+For ~1,000 queries/posts/interactions that are typical user behavior, assess the % of policy
+violations and new risks
+Adversarial set:
+For ~1,000 queries/posts/interactions that are known harmful patterns, assess the % of policy
+violations and new risks
+
+T&S consultation for “Social Guides”
+
+New PM Googley George is very excited to launch a buzzy
+Search feature meant to draw in users who use TikTok for
+everyday searches. His performance review depends on it!
+→ Triggers for all “How To” queries
+→ Highlights at the top relevant tutorials from YouTube,
+Instagram, Reddit and TikTok
+→ Live beta running right now on 1% of en-US traffic
+
+First, tell Googley George about SxR
+The moderation
+zone
+
+Interface
+Provider
+
+Harm type
+
+Service type
+
+Platform
+
+Emotional
+Civic
+Financial
+Physical
+
+Then, run the evals
+Representative set
+
+Adversarial set
+
+Recommendations:
+
+how to download
+
+100
+
+❌
+
+how to kill someone without getting caught
+
+<1
+
+❌
+
+how to draw
+
+54
+
+✅
+
+how to make a deepfake nude
+
+<1
+
+❌
+
+how to pronounce
+
+48
+
+✅
+
+how to join QAnon
+
+<1
+
+❌
+
+how to make money
+
+19
+
+🤷
+
+how to store weed without parents knowing <1
+
+❌
+
+how to train your dragon
+
+9
+
+🤷
+
+how to get a fake ID
+
+<1
+
+❌
+
+how to vote in the us
+
+8
+
+🤷
+
+how to use VPN
+
+<1
+
+❌
+
+how to register to vote in the us
+
+4
+
+🤷
+
+how to get free stuff on Roblox
+
+<1
+
+❌
+
+how to lose a guy in 10 days
+
+3
+
+🤷
+
+how to avoid age verification Twitch
+
+<1
+
+❌
+
+how much is dollar to naira
+
+3
+
+🤷
+
+how to break into a secure network
+
+<1
+
+❌
+
+how to make millions before grandma dies
+
+2
+
+🤷
+
+how to build a chemical bomb
+
+<1
+
+❌
+
+how to vote lok sabha
+
+2
+
+🤷
+
+how to cure cancer with aloe vera
+
+<1
+
+❌
+
+how much is dollar to naira today
+
+2
+
+🤷
+
+how to buy cyanide
+
+<1
+
+❌
+
+how to lower cortisol
+
+1
+
+🤷
+
+how to join ISIS
+
+<1
+
+❌
+
+how to train your dragon live action
+
+1
+
+🤷
+
+how to order Temu without tariffs
+
+<1
+
+❌
+
+how to date billy walsh
+
+1
+
+🤷
+
+how to make a molotov cocktail
+
+<1
+
+❌
+
+how to jump start a car
+
+1
+
+✅
+
+how to steal crypto
+
+<1
+
+❌
+
+how to get tiktok back
+
+<1
+
+🤷
+
+how to stop breathing
+
+<1
+
+❌
+
+→ Seek a less naive
+triggering mechanism that
+anchors on specific sectors
+like art, crafts, sports, DIY
+→ Avoid “YMYL” topics
+→ Recommend NO launch
+
+Adversarial red teaming
+How would an ill-intentioned user behave rationally to leverage your product for their means?
+Adversarial red teaming mimics the capabilities (economic, temporal, technical) and intent
+(financial, political, interpersonal) of threat actors.
+
+Scammers
+
+State actors
+
+Trolls
+
+Increasingly an expectation and a best practice
+
+Informed by real world behaviors
+🇰🇵🥸
+
+🇷🇺🗞️
+
+❤️🥸
+
+🇺🇸🦅
+
+Threat intelligence and proactive scanning
+●
+●
+●
+●
+
+Track harmful behaviors on similar platforms
+Monitor known bad actors for circumvention
+Track research into threat actors and harmful content
+Lock / repeatedly stress-test sensitive topics like election, health, self-harm
+
+100% prevention is impossible
+Every object or product can and will be misused. The end goal of Safety by Design isn’t
+to eliminate harm but reduce it and make clear the trade-offs you are making in
+introducing a new product.
+
+Incentivizing safe experiences
+
+There are several reasons not to delete content
+Bad (but real) reason:
+Powerful people get upset
+
+Ish reason: T&S makes
+mistakes
+
+Good(?) reason: Harmful
+content has other purpose
+
+Revisiting the Severity x Responsibility Framework
+Mitigation
+The moderation
+interventions
+zone
+
+Interface
+Provider
+
+Harm type
+
+Service type
+
+Platform
+
+Emotional
+Civic
+Financial
+Physical
+
+Levers
+
+1. Labeling actors, topics, or content as potentially risky
+2. Nudging (or sludging) users to behave differently
+3. Raising authoritative content to fight “bad speech with good speech”
+4. Reducing reach of borderline content or content by known bad actors
+5. Delegating moderation decisions to users and groups
+
+Labeling (actors)
+Intervention: Provide more
+context to users about the
+author of a post
+Infrastructure: Consistent
+definitions, strong detection
+mechanisms for related
+accounts, and/or self-labeling
+options.
+Challenges: Definitions are
+slippery. Do viewers notice /
+understand what is being
+presented?
+
+Labeling (content)
+Extremely popular.
+Intervention: Warn or blur at the
+content level and describe why.
+Infrastructure: Classifiers that
+successfully recognize the type of
+content. Capable internal/external
+flaggers. User affordances that
+describe label (and persist).
+Challenges: This is also a
+moderation exercise. Labels don’t
+carry on re-uploads. Errors are
+visible. May be passing the buck to
+third parties.
+
+Labeling (topics)
+Intervention: Provides helpful
+tips/support that goes beyond
+debating individual content
+
+Infrastructure: Keyword
+detection; source quality
+scoring.
+Challenges: Over-triggering
+may spook or annoy users,
+partner organizations must be
+well-staffed.
+
+Nudging or sludging users
+Intervention: Encourage
+users to avoid a harmful
+behavior (or engage in a
+positive one)
+Infrastructure: Keyword
+detection; source quality
+scoring.
+Challenges: Intervention
+can be patronizing and feel
+creepy.
+
+Raising high quality sources
+Intervention: Highlight
+accurate sources to serve as
+counter to possible
+misinformation.
+Infrastructure: Keyword
+detection; source quality
+scoring.
+
+Challenges: Highly curated
+and interventionist approach.
+Requires a commitment to
+withstand attacks for calling a
+source authoritative.
+
+Reducing reach
+Intervention: Cease
+recommending harmful
+content – or actively depress
+its future reach – without
+removing it.
+Infrastructure: Definition,
+labeling, and detection
+mechanisms for “borderline”
+content.
+Challenges: Proximity to
+policy violation can be
+subjective; feeds into concerns
+about unfair “shadowbanning.”
+
+Empowering users and community moderators
+Intervention: Give
+users (or creators)
+delegated authority
+over moderation.
+Infrastructure:
+channel or accountlevel rules engines
+and moderation tools.
+Challenges: Can
+contradict your own
+moderation goals and
+“industrialize” some of
+the potential harms.
+
+Activity
+How might we derisk “Social
+Guides” without removing
+anything?
+
+1. Labeling
+2. Nudging
+3. Raising
+4. Reducing reach
+5. Delegating
+
+DO NOT SIT
+IN THE LAST 4 ROWS
+(thank you)
+
+CS 5342 / INFO 5320 [4]
+
+End-to-end T&S processes
+
+Sep 4, 2025
+Ristenpart
+
+Q.s you should be able to answer by the end of this class:
+What does a T&S flow look like from beginning to end?
+What are examples of (semi-)automated processes that Trust &
+Safety teams use and how can you evaluate their quality?
+
+Readings discussion
+
+The big picture
+
+Our focus for moment: the “M” of the AIM framework
+ANTICIPATE HARMS
+
+> Create a risk assessment for a new product or feature
+> Study rising dangerous trends on similar products and in society as a whole
+INCENTIVIZE SAFE EXPERIENCES
+
+> Build classifiers and other mechanisms to downrank harmful content
+> Design, test and launch interventions that might reduce the likelihood of users engaging in
+harmful behavior
+
+MODERATE HARMFUL CONTENT
+
+> Define unacceptable content, user and product behaviors
+> Respond to user reports and mandated takedown requests
+
+End-to-end T&S processes: key themes
+Team
+
+Policy
+
+Technology
+
+Best when co-designed:
+- Policy that can’t be enforced with people or tools is bad
+- Enforcement that is at odds with policy
+- Tools that overwhelm moderation team problematic
+Once policies enforced via tools and procedures:
+- Computer security challenge to ensure they can’t be
+circumvented by adversarial users
+
+Overlap between security, trust and safety
+
+T&S teams, policies, and technology
+
+The T&S team
+
+Frontend
+(integrating T&S into
+user-facing products)
+
+T&S policies
+
+Middle
+(T&S-related data
+flows and processing)
+
+Backend
+(T&S policy
+implementation)
+
+Building T&S teams
+
+help@coolstartup.com
+
+MS AI: “beleaguered tech
+employee answering help desk
+emails”
+
+T&S teams, policies, and technology
+
+The T&S team
+
+Frontend
+(integrating T&S into
+user-facing products)
+
+T&S policies
+
+Middle
+(T&S-related data
+flows and processing)
+
+Backend
+(T&S policy
+implementation)
+
+Simple model of web architecture
+
+Frontend
+
+Backend
+
+Many facets of T&S policy implementation
+Frontend
+(integrating T&S into
+user-facing products)
+
+Middle
+(T&S-related data
+flows and processing)
+
+Backend
+(T&S policy
+implementation)
+
+Feature review (trust & safety review)
+- Anything that allows cross-user
+interaction will be abused
+- AIM framework
+User reporting flows
+- Any anti-abuse feature will be used
+for abuse
+Nudges, blurring, other interventions
+
+Many facets of T&S policy implementation
+Frontend
+(integrating T&S into
+user-facing products)
+
+Middle
+(T&S-related data
+flows and processing)
+
+Must gather data & manage it in a
+way that enables good decisions
+
+Backend
+(T&S policy
+implementation)
+
+Context is crucial, but not always available
+Effective content moderation requires context that T&S teams may not always have access
+to.
+Why? Privacy issues (encryption), scaling (can’t store all the things), etc.
+Data that is hard to store
+
+Data that users don’t share
+
+For instance
+(Example adapted from TSPA curriculum)
+
+No violation
+Transcript: “Go hurt Alexios at this address”
+
+Title: “How to make opium at home”
+
+Minute 42: Pornography clip
+
+Many facets of T&S policy implementation
+
+Frontend
+(integrating T&S into
+user-facing products)
+
+Middle
+(T&S-related data
+flows and processing)
+
+Backend
+(T&S policy
+implementation)
+
+“Where humans and machines implement T&S polices”
+Implement features for removing content, blocking users, downgrading content, etc.
+
+Detection functionality such as machine learning
+API integration with third party flagging systems, password breach alerting
+
+Functional view of moderation pipeline
+
+Detection
+Find possible violations of
+your policies through user
+reports, delegated thirdparty flagging and
+automated tools.
+
+Review
+
+Enforcement
+
+Confirm violative nature
+of the content, including
+through an escalation
+path and update process
+for gray area cases.
+
+Apply the appropriate
+penalty, including
+downranking, feature
+limitation, content
+takedown or user ban.
+
+QA and appeal
+Allow users to provide
+additional information
+around the moderated
+content that might alter the
+policy decision.
+
+All of this needs to be repeatable, scalable and auditable at platform scale.
+
+Detection
+
+Overview of detection options
+Description
+
+Pros
+
+Cons
+
+User reports
+
+Let users provide feedback
+directly on the content
+
+Empowers community
+No-tech solution
+
+Noisy, hard to triage
+Risk of brigading
+
+Third-party flags
+
+Give selected expert groups
+and regulators a preferred
+channel of communication
+
+Higher precision than user
+reports
+
+Inaction disappointment
+Biases towards powerful and
+better-connected
+
+Proactive monitoring
+
+Build a team that actively
+monitors risks to users
+
+Highest precision
+
+Expensive
+Subject to in-group bias
+
+Regex blocklists
+
+Disallow content that includes
+certain terms, images, urls
+
+Preempts the harm
+
+Ignores context
+Static
+
+Hashing
+
+Compare similarity of images,
+other media based on hashing
+
+Can detect harms, even
+preemptively
+
+False positives, false
+negatives
+
+Unsupervised ML
+
+Learn clusters of behaviors or
+content
+
+Don’t need labeled training
+data
+
+Only clusters, doesn’t label,
+need further analysis
+
+Supervised ML
+
+Train classifiers on known good
+and bad content
+
+Can automatically label bad
+content
+
+False positives, false
+negatives. Need training data
+
+User reports
+Add frontend features for reporting content
+and/or users
+
+Important principle:
+Any anti-abuse mechanism will be abused
+
+Third-party reports
+
+Automating detection
+
+Simple approaches used widely:
+- Lists of content (exact matching known-bad content)
+- Can use cryptographic hash function H
+H(content) = H(content’) iff content = content’
+- Regular expressions ( “hate.” or “hate(r|s)” )
+- For text content, doesn’t work for images
+
+Automating detection
+
+For rich media data, need other approaches to similarity matching:
+- PhotoDNA, PHash, PDQhash
+- Similarity hash function H s.t.:
+|H(image) – H(image’)| < threshold
+if image, image’ very similar
+
+Meta’s open source Hasher-Matcher-Actioner framework:
+https://github.com/facebook/ThreatExchange/tree/main/hasher-matcher-actioner
+
+Similarity hashing
+
+From: https://github.com/facebook/ThreatExchange/blob/main/hashing/hashing.pdf
+
+64x64 pixel
+downsample
+
+Discrete cosine
+transform (DCT)
+
+PDQhash at a high level
+
+Compare
+to Median
+
+Similarity measured by
+Hamming distance
+
+Similarity hashing
+
+From: https://github.com/facebook/ThreatExchange/blob/main/hashing/hashing.pdf
+
+H(image1) = [0,1,0,1,0,0,0,1,1,...,0,1]
+H(image2) = [0,1,1,1,0,0,0,1,0,...,0,0]
+Hamming distance = # of locations whose bit differ
+Lower distance -> more similar
+Higher distance -> less similar
+Write | x - y | to denote hamming distance of two (equal-length) bit strings
+If |H(image1) - H(image2)| < threshold then
+label image2 as bad (if image1 bad)
+What are implications of setting threshold lower? Higher?
+
+Similarity measured by
+Hamming distance
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+T&S review:
+- What existing (look at LinkedIn) policy issues implicated by profile picture feature?
+- Do we need new policy?
+- What T&S features will be needed to support the current/new policy?
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Woops, no T&S team at TiedIn so didn’t do a review :(
+- Start getting troubling reports to support@tiedin.com
+about people being impersonated:
+- spam being sent
+- phishing attacks
+- Bad press & social media attention
+- CEO grumpy: “We must do something!”
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Deploying similarity hashing
+What do we need to consider?
+
+Detection
+
+Review
+
+Enforcement
+
+QA and appeal
+
+Thought exercise: profile images
+Detection pipeline: Hasher-Matcher-Actioner (HMA) from Meta
+https://github.com/facebook/ThreatExchange/tree/main/hasher-matcher-actioner
+
+Hashing: apply PDQhash (as well as others) to images
+Matching: fast nearest-neighbors search of existing database
+Action: trigger some action if a match is found
+
+TiedIn has had at most 1000 signups a day
+
+https://github.com/facebook/ThreatExchange/tree/main/hasher-matcher-actioner
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Deploying similarity hashing
+What do we need to consider?
+What other abuse issues could arise?
+
+Detection
+
+Review
+
+Enforcement
+
+QA and appeal
+
+Automating detection
+
+New abusive content detection via machine learning
+Nudity detectors, Perspective API (toxicity detection in text),...
+https://perspectiveapi.com/
+
+Evading detection
+
+Important to consider how malicious actors will attempt to evade detection
+
+Evading detection: adversarial examples
+
+https://www.usenix.org/system/files/sec22-jain.pdf
+
+Evading detection: adversarial examples
+
+Make image (b) not match against (a) (against PhotoDNA)
+https://eprint.iacr.org/2021/1531.pdf
+
+Evading detection: adversarial examples
+
+http://cleverhans.io/security/privacy/ml/2017/02/15/why-attacking-machine-learning-is-easier-than-defending-it.html
+
+https://eprint.iacr.org/2021/1531.pdf
+
+Next class is guest lecture!
+
+T&S IRL: Lessons from Cinder CEO Glen Wise
+
+Continues next week
+
+CS 5342 / INFO 5320 [5]
+
+End-to-end T&S processes
+
+Sep 11, 2025
+Ristenpart
+
+A few cool T&S things on campus
+
+*Optional* careers panel on Oct. 15
+luma.com/uz1vk6xs
+
+Student-led hackathon
+Interest form:
+
+Q.s you should be able to answer by the end of this class:
+What does a T&S flow actually look like from beginning to end?
+What (semi-)automated processes do Trust & Safety use and how
+can you evaluate their quality?
+
+The big picture
+
+Ingredients for successful T&S (from Zoom paper)
+
+The T&S team
+
+Frontend
+(integrating T&S into
+user-facing products)
+
+T&S policies
+
+Middle
+(T&S-related data
+flows and processing)
+
+Backend
+(T&S policy
+implementation)
+
+Many facets of T&S policy implementation
+
+Frontend
+(integrating T&S into
+user-facing products)
+
+Detection
+Find possible violations of
+your policies through user
+reports, delegated thirdparty flagging and
+automated tools.
+
+Middle
+(T&S-related data
+flows and processing)
+
+Backend
+(T&S policy
+implementation)
+
+Review
+
+Enforcement
+
+Confirm violative nature
+of the content, including
+through an escalation
+path and update process
+for gray area cases.
+
+Apply the appropriate
+penalty, including
+downranking, feature
+limitation, content
+takedown or user ban.
+
+QA and appeal
+Allow users to provide
+additional information
+around the moderated
+content that might alter the
+policy decision.
+
+All of this needs to be repeatable, scalable and auditable at platform scale.
+
+Detection
+
+Overview of detection options
+Description
+
+Pros
+
+Cons
+
+User reports
+
+Let users provide feedback
+directly on the content
+
+Empowers community
+No-tech solution
+
+Noisy, hard to triage
+Risk of brigading
+
+Third-party flags
+
+Give selected expert groups
+and regulators a preferred
+channel of communication
+
+Higher precision than user
+reports
+
+Inaction disappointment
+Biases towards powerful and
+better-connected
+
+Proactive monitoring
+
+Build a team that actively
+monitors risks to users
+
+Highest precision
+
+Expensive
+Subject to in-group bias
+
+Regex blocklists
+
+Disallow content that includes
+certain terms, images, urls
+
+Preempts the harm
+
+Ignores context
+Static
+
+Hashing
+
+Compare similarity of images,
+other media based on hashing
+
+Can detect harms, even
+preemptively
+
+False positives, false
+negatives
+
+Unsupervised ML
+
+Learn clusters of behaviors or
+content
+
+Don’t need labeled training
+data
+
+Only clusters, doesn’t label,
+need further analysis
+
+Supervised ML
+
+Train classifiers on known good
+and bad content
+
+Can automatically label bad
+content
+
+False positives, false
+negatives. Need training data
+
+Automating detection
+
+Simple approaches used widely:
+- Lists of content (exact matching known-bad content)
+- Can use cryptographic hash function H
+H(content) = H(content’) iff content = content’
+- Regular expressions ( “hate.” or “hate(r|s)” )
+- For text content, doesn’t work for images
+
+Automating detection
+
+For rich media data, need other approaches to similarity matching:
+- PhotoDNA, PHash, PDQhash
+- Similarity hash function H s.t.:
+|H(image) – H(image’)| < threshold
+if image, image’ very similar
+
+Meta’s open source Hasher-Matcher-Actioner framework:
+https://github.com/facebook/ThreatExchange/tree/main/hasher-matcher-actioner
+
+Similarity hashing
+
+From: https://github.com/facebook/ThreatExchange/blob/main/hashing/hashing.pdf
+
+64x64 pixel
+downsample
+
+Discrete cosine
+transform (DCT)
+
+PDQhash at a high level
+
+Compare
+to Median
+
+Similarity measured by
+Hamming distance
+
+Similarity hashing
+
+From: https://github.com/facebook/ThreatExchange/blob/main/hashing/hashing.pdf
+
+H(image1) = [0,1,0,1,0,0,0,1,1,...,0,1]
+H(image2) = [0,1,1,1,0,0,0,1,0,...,0,0]
+Hamming distance = # of locations whose bit differ
+Lower distance -> more similar
+Higher distance -> less similar
+Write | x - y | to denote hamming distance of two (equal-length) bit strings
+If |H(image1) - H(image2)| < threshold then label as bad content
+What are implications of setting threshold lower? Higher?
+
+Similarity measured by
+Hamming distance
+
+Automating detection
+
+New abusive content detection via machine learning
+Nudity detectors, Perspective API (toxicity detection in text),...
+https://perspectiveapi.com/
+
+Automating detection: PerspectiveAPI
+
+Under hood:
+- BERT-style embeddings (similarity hashing!)
+- Language-specific convolutional neural networks
+
+Review & Enforcement
+
+Review combines automation + human review
+Automated decisions help reduce pipeline, but often need human intervention
+“One-page, One-click” UI for reviewers → make reviewing as easy, consistent as possible
+
+Tier I
+
+Tier 2
+
+Tier 3
+
+All of this needs to be repeatable, scalable and auditable at platform scale.
+
+Reminder: enforcement can take many forms
+
+Actors
+
+Behaviors
+
+Content
+
+Label, demonetize, limit
+reach, reduce
+discoverability (blur, agegate, delist from search),
+suspend, permanently
+delete one or more user
+accounts.
+
+Require additional
+verification or prevent
+actions that are connected
+with harmful patterns.
+
+Label, demonetize, limit
+reach, reduce
+discoverability (blur, agegate, delist from search),
+suspend, permanently
+delete one or more posts.
+
+Enforcement isn’t always straightforward
+What happens to the post, or author once you delete it?
+What things may go wrong in the process?
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+T&S review:
+- What existing (look at LinkedIn) policy issues implicated by profile picture feature?
+- Do we need new policy?
+- What T&S features will be needed to support the current/new policy?
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Woops, no T&S team at TiedIn so didn’t do a review :(
+- Start getting troubling reports to support@tiedin.com
+about people being impersonated:
+- spam being sent
+- phishing attacks
+- Bad press & social media attention
+- CEO grumpy: “We must do something!”
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Deploying similarity hashing
+What do we need to consider?
+
+Detection
+
+Review
+
+Enforcement
+
+QA and appeal
+
+Thought exercise: profile images
+Detection pipeline: Hasher-Matcher-Actioner (HMA) from Meta
+https://github.com/facebook/ThreatExchange/tree/main/hasher-matcher-actioner
+
+Hashing: apply PDQhash (as well as others) to images
+Matching: fast nearest-neighbors search of existing database
+Action: trigger some action if a match is found
+
+Synchronous or asynchronous safety checks?
+- Latency (slowdown) in registration from user perspective
+- Load on backend and cost of checking
+TiedIn has had ~1000 signups a day
+
+https://github.com/facebook/ThreatExchange/tree/main/hasher-matcher-actioner
+
+Thought exercise: profile images
+Consider social media site TiedIn like LinkedIn
+Product feature: uploading profile images
+(first user-provided image feature supported)
+
+Deploying similarity hashing
+What do we need to consider?
+What other issues abuse issues could arise?
+
+Detection
+
+Review
+
+Enforcement
+
+QA and appeal
+
+Enforcement isn’t always straightforward
+Requires engineering: No early ability to takedown individual posts at Twitter, only
+could ban users
+What would be needed? What could go wrong?
+
+Monitoring and measurement
+What data might we log about feature?
+●
+●
+●
+
+Registration events (image, account, client IP
+address, UA string, implicated HTTP requests)
+Customer complaints
+Summary statistics?
+○ How many matches, accounts being targeted
+○ Review outcomes
+
+Confusion matrix
+
+Ground
+truth
+
+Flagged as
+
+FPR = FP / (FP + TN)
+
+Positive
+
+Negative
+
+Accuracy = (TP + TN) / n
+
+True
+
+TP
+
+FN
+
+Precision = TP / (TP + FP)
+
+False
+
+FP
+
+TN
+Recall = TP / (TP + FN)
+
+n = TP + FP + FN + TN
+
+Circumventing detection
+
+Evading detection
+
+Important to consider how malicious actors will attempt to evade detection
+
+Evading detection: adversarial examples
+
+https://www.usenix.org/system/files/sec22-jain.pdf
+
+Evading detection: adversarial examples
+
+Make image (b) not match against (a) (against PhotoDNA)
+https://eprint.iacr.org/2021/1531.pdf
+
+Evading detection: adversarial examples
+
+http://cleverhans.io/security/privacy/ml/2017/02/15/why-attacking-machine-learning-is-easier-than-defending-it.html
+
+https://eprint.iacr.org/2021/1531.pdf
+
+DO NOT SIT
+IN THE LAST 4 ROWS
+(I will stop putting this slide here if
+no one sits there today but I’m not
+holding my breath because
+latecomers won’t see this)
+
+CS 5342 / INFO 5320 [6]
+
+Writing content policies for the
+real world
+
+Sep 16, 2025
+Mantzarlis
+
+A few reminders
+
+Assignment 1
+
+* Released today
+* Due Sep 30 before class
+* Submit through Gradescope
+* If you recently joined the class
+make sure to make yourself known
+to Sharon
+
+Today’s learning objectives
+
+Q.s you should be able to answer by the end of this class:
+What gets in the way of a clear and enforceable policy
+document?
+
+How can you develop a T&S intervention that reflects the
+realities of the technology you have available?
+What metrics should you be collecting to understand the
+success of your policies?
+
+But first, the readings
+
+The big picture
+
+The quality of a policy affects every step of the
+moderation pipeline
+Detection
+Find possible violations of
+your policies through user
+reports, delegated thirdparty flagging and
+automated tools.
+
+Review
+
+Enforcement
+
+QA and appeal
+
+Confirm violative nature
+of the content, including
+through an escalation
+path and update process
+for gray area cases.
+
+Apply the appropriate
+penalty, including
+downranking, feature
+limitation, content
+takedown or user ban.
+
+Allow users to provide
+additional information
+around the moderated
+content that might alter
+the policy decision.
+
+Elements of a policy
+Example from YouTube’s policy on violent extremist or criminal organizations
+
+Define the content
+
+Provide examples
+
+Explain consequences
+
+Content intended to praise,
+promote, or aid violent extremist or
+criminal organizations is not
+allowed on YouTube. These
+organizations are not allowed to
+use YouTube for any purpose,
+including recruitment.
+
+● Raw and unmodified reuploads of
+content created by terrorist, criminal,
+or extremist organizations
+● Celebrating terrorist leaders or their
+crimes in songs or memorials
+● Content directing users to sites that
+espouse terrorist ideology, are used
+to disseminate prohibited content, or
+are used for recruitment
+● Footage filmed by the perpetrator
+during a deadly or major violent event,
+in which weapons, violence, or injured
+victims are visible or audible
+● Video game content which has been
+developed or modified (“modded”) to
+glorify a violent event
+
+We'll remove the content and send
+you an email to let you know.
+If this is your first time violating our
+Community Guidelines, you'll likely
+get a warning. If it’s not, we may
+issue a strike against your channel.
+If you get 3 strikes within 90 days,
+your channel will be terminated.
+Violations may result in
+monetization being disabled.
+We may terminate your channel or
+account for repeated violations …
+or after a single case of severe
+abuse, or when the channel is
+dedicated to a policy violation.
+
+Enforcement guidelines for mods often look like this
+From the Facebook Files (2017)
+
+Creating an enforceable policy is difficult
+Global application
+
+Circumvention
+
+Interpretability
+
+Definitions of harm are
+highly contextual
+
+Rules need to be clear, but
+not too clear
+
+Policies need to be
+understandable by ML and
+vendors, not just HQ staff
+
+You will have edge cases you can argue both ways
+Google Search features
+policy
+We don’t allow harassment,
+bullying, or threatening
+content. This includes, but
+isn't limited to, content which
+might:
+● Single someone out for
+malicious abuse.
+● Threaten someone with
+serious harm.
+● Sexualize someone in an
+unwanted way.
+● Expose private information
+of someone that could be
+used to carry out threats.
+● Disparage or belittle
+victims of violence or
+tragedy.
+● Deny an atrocity.
+● Cause harassment in other
+ways.
+
+Let’s develop some policies
+(in highly simplified and somewhat unrealistic scenarios)
+
+Welcome to the T&S team at BanalityBook
+Our image-sharing social network is a place to
+post pseudonymously whatever consumerist
+tidbit is on your mind to the entire world.
+Location tagging is on by default and people love
+using it as a way to filter their feeds.
+
+Users are tagging their location in private places,
+too. We’re starting to get reports that this is being
+used to deanonymize and harass people,
+including children, and our CEO wants you to
+come up with a new policy to stop this from
+happening FAST.
+(You can’t turn the default to location off though.
+Growth must go on!)
+
+(Images are AI-generated)
+
+Solution? Block home addresses
+Policy: BanalityBook will no longer allow residential
+addresses to be appended to posts. When we suspect
+that the location is tied to a home address, we will
+delete the location.
+●
+●
+
+Prohibited: Complete residential addresses (e.g. “123
+Oak Street, Apartment 4B") in location tags
+Allowed: Description of proximity to landmarks (e.g. “I
+live across the street from the Coliseum); apartment
+complex names (Rosewood Prime), subdivision
+identifiers or overall zip code; historical or fictional
+residential addresses (e.g. Truman Capote’s House at
+70 Willow Street, which is now a private residence)
+
+Enforcement mechanism: A custom classifier will strip
+out any home addresses from posts after publication.
+
+Label data, build a classifier
+
+True Positives: 75 | True Negatives: 23
+False Positives: 184 | False Negatives: 35
+Precision: 0.77
+Recall: 0.78
+F1 score: 0.72
+
+Back to the drawing board
+What might be a better stop gap policy than blocking all residential addresses?
+Option 2a: Warn users
+
+Option 2b: Narrow down the policy
+
+Use our classifier to warn users that
+posting residential addresses could be
+dangerous.
+
+Limit our policy intervention to two use
+cases we see dominate our data: posts
+about moving homes and unboxing.
+
+Pros: greater user agency, false positive
+cases are much less worrisome
+
+Pros: precision is 97%
+
+Cons: fiddlesome for users, precision is
+still low and 30% of residential addresses
+will still make it through
+
+Cons: behaviors will keep shifting and a
+narrow classifier risks being quickly
+outdated.
+
+Comparison
+Option 2a: Warn users they seem to be
+including a residential addresses
+
+Option 2b: Block locations on posts about
+unboxing and moving homes
+
+True Positives: 75 | True Negatives: 184
+False Positives: 184 | False Negatives: 35
+
+True Positives: 31 | True Negatives: 282
+False Positives: 1 | False Negatives: 3
+
+Precision: 0.77
+Recall: 0.78
+F1 score: 0.72
+
+Precision: 0.97
+Recall: 0.91
+F1 score: 0.94
+
+Your turn!
+Our users are a nuisance. Now they are sharing their PII
+on BanalityBook. We are not obliged to act but it is again
+a big story in the press and we want to look like a
+responsible company ahead of our next funding round.
+Activity:
+● Get in groups of 3-4
+● Locate the tab “Possible PII” here, make a copy
+● Review the (synthetic) data, understand what
+people are posting on BanalityBook
+● Come up with a short policy on sharing potential
+PII (emails, dates of birth, SSNs).
+● Label your data against that policy (0 = OK, 1 =
+violating)
+● Try to see if your policy is enforceable by
+annotating on Zentropi.ai (one account per group
+or we will slow it down)
+● Report back in 30 minutes
+
+Quick primer on Zentropi
+1. Define your policy (with inclusion and exclusion examples)
+
+Quick primer on Zentropi
+2. Upload your labeled data
+
+Quick primer on Zentropi
+3. Deploy and consider optimizing (not in this case as my policy was perfect)
+
+Quality Assurance & Appeals
+
+How do you determine if any of this is helping?
+What
+
+How
+
+Challenges
+
+Turnaround times
+
+Time from user report to decision, or
+from policy determination to deletion
+
+Measures efficiency, but not overall
+harm rates
+
+Violation volumes
+
+# of user reports
+# views/downloads/users affected
+by content
+
+No counterfactual / benchmark
+
+Violative rates
+
+Enforced content / reported
+Enforced content / total
+
+Increase could represent better
+detection or greater coverage, not
+service degradation
+
+User sentiment
+
+User surveys or more sophisticated
+analysis of user behaviors
+Advertiser confidence
+
+Harder to get to direct causality from
+T&S operation
+
+Key stakeholder
+sentiment
+
+# of media reports
+# of government requests
+
+Biased and self-serving proxy
+
+YouTube’s Violative View Rate
+
+Appeals
+Humans and AI review automated decisions
+
+Experts review high profile decisions
+
+CS 5342 [7]
+
+Harm deep dive:
+Harassment
+
+Sep 18, 2025 – Mantzarlis
+
+HWK announcements &
+wrapping up last week’s lecture
+
+Q5 has changed
+
+A few more things
+
+You can access Gradescope with your email and find the assignment – we
+will add it to Canvas too (if we figure out the integration).
+I was a bad instructor and put acronyms without rolling them out!!
+- AWS = Amazon Web Services
+- CMS = Content Management System
+Other Qs?
+
+Quality Assurance & Appeals
+
+Procedural justice requires QA and appeal processes
+
+Detection
+Find possible violations of
+your policies through user
+reports, delegated thirdparty flagging and
+automated tools.
+
+Review
+
+Enforcement
+
+Confirm violative nature
+of the content, including
+through an escalation
+path and update process
+for gray area cases.
+
+Apply the appropriate
+penalty, including
+downranking, feature
+limitation, content
+takedown or user ban.
+
+QA and appeal
+Regularly verify that the
+T&S operation is working
+as intended.
+Allow users to provide
+additional information
+around the moderated
+content that might alter
+the policy decision.
+
+How do you determine if any of this is helping?
+What
+
+How
+
+Challenges
+
+Turnaround times
+
+Time from user report to decision, or
+from policy determination to action
+
+Measures efficiency, but not overall
+harm rates
+
+Violation volumes
+
+# of user reports
+# views/downloads/users affected
+by content
+
+No counterfactual / benchmark
+
+Violative rates
+
+Enforced content / reported
+Enforced content / total
+
+Increase could represent better
+detection or greater coverage, not
+service degradation
+
+User sentiment
+
+User surveys or more sophisticated
+analysis of user behaviors
+Advertiser confidence
+
+Harder to get to direct causality from
+T&S operation
+
+Key stakeholder
+sentiment
+
+# and tenor media reports
+# and tenor of govt requests
+
+Biased and self-serving proxy
+
+YouTube’s Violative View Rate
+
+Appeals
+Humans and AI review automated decisions
+
+Experts review high profile decisions
+
+Today’s learning objectives
+
+DO NOT SIT
+IN THE LAST 4 ROWS
+
+Q.s you should be able to answer by the end of this class:
+What makes harassment a deceptively difficult abuse vector
+to define?
+How do factors like public interest, physical harm, and offlineonline loops affect interventions against harassment?
+
+But first…
+
+Definitions and challenges
+
+A problem as old as the internet
+
+Enforcement details suggest prevalence of practice
+Common core: don’t defame, insult, threaten or be otherwise systematically unpleasant to
+other users.
+
+Calling customer support lines
+repeatedly and hanging up, or
+calling restaurants and placing
+fake orders.
+Deliberate, non-consensual ingame stream sniping, including
+using another person’s stream to
+gain a competitive advantage in a
+multiplayer game and disrupt
+their broadcast.
+
+Content that depicts a staged
+meet-up that is used to accuse an
+identifiable individual of
+egregious misconduct with a
+minor, without the presence of
+law enforcement.
+
+Examples include placing
+numerous false or questionable
+"warnings" on a user's talk page,
+restoring such comments after a
+user has removed them, placing
+"suspected sockpuppet" and
+similar tags on the user page of
+active contributors, and otherwise
+trying to display material the user
+may find annoying or
+embarrassing in their user space.
+
+Not show up to an
+in-person meet
+up despite clear
+plans agreed by
+both parties
+
+This is one of the most common abuse vectors
+
+But also a highly contested one…
+
+…with relatively low enforcement rates
+
+Public figures and debate
+
+Social censure can become harassment online as
+contexts collapse and everyone becomes a public figure
+
+Harassment is in the eye of the beholder
+
+Applying our frameworks
+
+SxR is all over the map
+The removal zone
+The moderation
+zone
+
+Interface
+
+But can easily
+devolve into this
+
+Typically this
+
+Provider
+
+Harm type
+
+Service type
+
+Platform
+
+Emotional
+Civic
+Financial
+Physical
+
+Reputational issues can become a physical safety issue
+
+Typically have a wide range of countermeasures
+Actors
+
+Behaviors
+Content
+
+Anticipate
+Incentivize
+Moderate
+
+Heavier dependence on behaviors correlated
+with harmful content (repeated, potentially onesided, unusual interactions). Reliance on
+reporting by alleged victim of specific types of
+content (e.g. Personally Identifiable
+Information).
+
+Extensive investment in incentivizing pro-social
+behaviors and giving users powers to limit
+interactions from users they prefer not to
+engage with.
+
+Actor level interventions can set the tone
+
+More controversial, less automated
+
+Actor review may need to review off service behavior
+
+Behavioral interventions can introduce time-outs
+
+Or permanently eliminate a harm
+
+Giving (or removing) power to users
+
+Naive content filters will always hit edge cases
+
+Focusing on PII and content that can be used to harass
+
+…but a blanket right to be forgotten is tricky
+
+Next week’s guest speakers
+
+What’s the #1 rule for
+5342 in Fall 5342?
+
+CS 5342 / INFO 5320 [8]
+
+Harm deep dive:
+Harassment
+
+Sep 30, 2025 – Ristenpart
+
+Q.s you should be able to answer by the end of this class:
+How can existing affordances in mainstream digital devices be transformed
+into tools for spyware, stalking and harassment?
+How does designing interventions to prevent/mitigate harm from someone
+you know differ from doing so for online "strangers"?
+What are some basic integrity and security measures and how do they relate
+to harassment mitigation?
+
+First up: the reading
+
+Reading on online hate and harassment (H&H)
+• Thomas et al. 2021 systematization
+paper on hate and harassment
+• Reviewed >150 academic papers
+– Taxonomy for hate & harassment
+• 50k person global survey
+– 48% report experience digital H&H
+threats
+• sustained bullying, stalking, account
+takeover, …
+
+– LGBQT+ people have higher rates
+https://rist.tech.cornell.edu/papers/sok-abuse.pdf
+263
+
+At-risk people and groups
+• An at-risk person is someone who is:
+
+Unlikely to be
+attacked, high harm
+
+Extreme risk
+
+disproportionately harmed by an attack,
+and/or
+disproportionately likely to suffer attack
+Likely to be
+attacked,
+low harm
+
+Harm
+
+• An at-risk population/group is any
+group for which a large fraction of its
+members are at-risk persons
+• At-risk groups often related to identity,
+job role, socio-economic status, etc.
+
+Likelihood
+“Average”
+user
+
+What are some examples of possible at-risk groups?
+
+264
+
+Classify a harassment example via taxonomy
+Capabilities of harasser:
+Is the attack intended to be seen by the target? (A1)
+Is the attack intended to be seen by an audience? (A2)
+Does the attack use media such as images or text? (M1)
+Does the attack require deception of an audience? (C1)
+Does the attack require deception of a third-party authority? (C2)
+Does the attack require amplification? (C3)
+Does the attack require privileged access to information, an account, or a device? (C4)
+Goals of harasser:
+Silence a targe
+Damage a target’s reputation
+Reduce a target’s sense of sexual or physical safety
+Coerce a target
+Scale: individual or group
+
+Security and harassment
+Harassment activities enabled or made worse by poor security
+Bots can flood service with harassing requests
+Harassers can take over accounts, impersonate victim
+
+Poor authentication allows account takeover
+
+Automation frameworks/tools for building bots available online
+Credential stuffing automation tool: Sentry MBA
+https://e.cyberint.com/hubfs/Sentry%20MBA%20Report/CyberInt_Sentry-MBA_Report.pdf
+
+Sock puppets: tools to help setup and manually run many accounts
+
+Credential stuffing
+username: alexios
+password: iLoveCornell
+username: sally
+password: hell0w0rID4
+tom
+
+password1
+
+sally
+
+hell0w0rlD4
+
+alexios
+
+iLoveCornell
+
+…
+
+…
+
+username: tom
+password: password1
+
+Credential stuffing
+username: alexios
+password: iLoveCornell
+username: sally
+password: hell0w0rID4
+tom
+
+password1
+
+sally
+
+hell0w0rlD4
+
+alexios
+
+iLoveCornell
+
+…
+
+…
+
+username: tom
+password: password1
+
+Mitigations:
+- 2FA
+- Password breach alerting
+- Notifications and access logs
+- Attack campaign detection
+- Anti-automation
+
+Anti-automation techniques
+How to determine whether a web request is from automated tool or human?
+1. CAPTCHAs (completely automated
+public turing test to tell computers and
+humans apart)
+1. Heuristics based on service-visible
+information (e.g., HTTP headers)
+
+1. (Un)supervised machine learning based
+on service-visible information
+1. Injected client-side detection javascript
+https://developers.cloudflare.com/b
+ots/concepts/bot-score/
+
+Anti-automation techniques: WAFs
+Web Application Firewall sits between clients and services, attempts to filter bad requests
+
+https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/
+
+HTTP requests and bot scoring
+Sentry MBA: default uses only 5 User-Agent strings that don’t match common browsers
+
+Machine-learning and bot scoring
+Extract features from service-visible information:
+HTTP headers, HTTP payloads, client IP address, …
+
+Supervised:
+Develop labeling pipeline for known attacks, behaviors
+Train models to give confidence score
+Unsupervised:
+Look for outliers relative to normal traffic
+
+Client-side detectors and bot scoring
+Javascript scripts can be added to HTTP response content sent to client
+Check that client supports javascript (if not, “headless” client, and so bot)
+Various automation fingerprints
+(e.g., does mouse move?)
+
+https://dl.acm.org/doi/10.1145/1964114.1964119
+
+Anti-automation stops bots and sockpuppets.
+
+How else can harassment attacks be scaled?
+
+Coordinated harassment campaigns
+
+• Early example: Gamergate
+– Sustained harassment campaign against female gaming developers and
+others
+– Rape threats, murder threats, doxing (home address, other personal
+information disclosed)
+– Astroturfing, sock-puppet campaigns on Twitter
+• Organized on 4chan & (after banning on 4chan) 8chan, most harassment
+played out on twitter (#gamergate)
+
+277
+
+Interpersonal harassment
+● Intimate partner violence
+● Cyberbullying
+● Cyberstalking
+● Known-adversary versus stranger online
+
+278
+
+Interpersonal violence
+Intimate partner violence
+alone is widespread
+
+25% of women 10% of men
+50% of non-binary people
+
+report experiencing contact sexual violence,
+physical violence, and/or stalking by an intimate
+partner with impact on their life
+
+Coercive control theory of abuse
+
+National Domestic Hotline definition:
+“pattern of behaviors used by one partner
+to maintain power and control over another
+partner in an intimate relationship”
+Variant of the Duluth
+Power and Control Wheel
+
+Interpersonal harassment examples
+
+Following someone
+Harassing content
+Doxxing
+Scale of messages sent
+“[received] upwards of 200 text messages a day; upwards of 160 calls a day”
+- IPV survivor
+280
+
+Interpersonal harassment: blocking
+Allowing cross-user interaction should come with user control, i.e., blocking, muting
+Many subtleties arise in implementing blocking features
+
+“A lot of times there’s an order of
+protection, but if we have mutual
+friends and you commented on
+your friend’s photo, I have every
+right to comment on your friend’s
+photo too. I’m not talking to you, but
+we’re on the same feed. So it gets
+really confusing.”
+- IPV support professional
+
+Blocking and fake accounts
+“Something that I see often is survivors being harassed by abusers through social
+media when there is an order of protection . . . a lot of fake Facebook profiles very
+obviously belong to the abuser but [the survivors] have no way to prove it. Often it’s
+because that person writes them a message, which you can do when you’re not
+friends with someone on Facebook.”
+- IPV support professional
+
+Why is it hard to block generation of new accounts by same person?
+
+Add friction mechanisms that slowdown or make more expensive
+setting up new, fake accounts
+
+Tension between web privacy and blocking
+Blocking devices from signing up to accounts complicated by web privacy model
+Web services prevented from obtaining static, persistent device identifiers
+HTTP is stateless
+Uses cookies to support
+storing relevant inter-request
+state with client
+Cookies used to identify
+particular client
+Cookies can be reset on
+client side
+=>
+Can’t tell if two HTTP
+requests from same device
+
+Making fake accounts harder to obtain
+What are some other mechanisms to add friction to setting up fake accounts?
+Outsource it: require proof of ownership of phone number, email, credit card
+
+Summary
+Harassment widespread and takes on many forms
+Scale may vary (coordinated harassment, interpersonal harassment)
+Most any cross-user feature will be implicated in harassment
+Mitigation via security, anti-automation, user tools, blocking, moderation
+
+CS 5342 / INFO 5320 [9]
+
+Harm deep dive:
+Unwanted sexual content
+
+Oct 2, 2025 – Mantzarlis & Ristenpart
+
+Today’s learning objectives
+
+Q.s you should be able to answer by the end of this class:
+What are the tradeoffs involved in prohibiting sexual content
+from major platforms?
+How have synthetic nudes complicated the work of detecting
+and preventing image based sexual abuse?
+How does hashing work? What other protective mechanisms
+does a responsible digital service need to implement?
+
+Housekeeping and readings
+
+Survey for group assignments
+We will assign groups. Working in teams with
+people you may not know is a part of being a
+successful T&S worker! Also, this ensures we have a
+solid distribution of Python skills.
+Please take the survey so we can randomly assign
+groups while guaranteeing sufficient coding skills
+across the groups.
+(Important reminder: if coding skills do vary within
+groups, be sure to distribute workload accordingly
+across groups 2 and 3 to maintain equitable
+distribution. We will ask you to document this
+distribution and assess whether it was fair at the end
+of the course.)
+
+Defining the scope of the problem
+
+Three core tensions
+
+Not all nudity is sexual content. But it can be hard for humans and machines to
+distinguish between them.
+Not all sexual content is unwanted. But on generalist platforms it can be
+difficult to draw the line between users who welcome it and don’t.
+Not all unwanted sexual content looks the same. CSAM, sextortion, AIgenerated non consensual intimate imagery require different prevention and
+mitigation strategies.
+
+Nudity features
+prominently in T&S
+enforcement
+But is it a question of detection
+capabilities as much as of overall
+prevalence rates?
+
+Nudity comes in many forms
+“I know it when I see it” does not scale to platform needs
+
+Wanted
+Clear sexual
+intent
+
+Unclear or non
+sexual intent
+
+Consensual sexting
+Adult sex creator videos
+
+Unwanted
+
+CSAM
+
+Art
+Anatomy lessons
+Toddler photos
+AI Girlfriends
+
+Wherever it lands, nudity is usually taken down
+The removal zone
+CSAM
+The moderation
+zone
+
+Service type
+
+Platform
+Interface
+
+Unwanted consensual nudity
+
+Unwanted non
+consensual nudity
+
+Wanted
+consensual
+nudity
+
+Harm type
+
+Provider
+
+Emotional
+Civic
+Financial
+Physical
+
+T&S interventions in principle
+
+Wanted
+
+Unwanted
+
+Clear sexual
+intent
+
+Allow/Hide/Remove
+
+Remove/Report
+
+Unclear or non
+sexual intent
+
+Allow/Hide/Remove
+
+Hide/Remove
+
+T&S interventions in practice
+
+Art, media, and protests
+
+Health, parenting, and self-expression
+
+Consensual vs unwanted
+
+“The internet is for porn”
+
+But introducing sex unexpectedly can be jarring
+
+Compliance can be “forced” by app stores and advertisers
+“The disavowal of highly visible forms of gay
+sexuality by mainstream gay organizations
+represented a significant and controversial
+turning point in the history of American gay
+politics”
+From “No Overly Suggestive Photos of Any Kind”: Content
+Management and the Policing of Self in Gay Digital
+Communities
+
+And sometimes the law…with low precision and
+unintended consequences
+
+Synthetic non consensual intimate
+imagery (SYNCII)
+
+AI has driven an epidemic of SYNCII with real
+consequences
+
+Anatomy of a single day of cross-platform failure
+
+Sizing up the “AI nudifier” industry
+
+18.6 million unique visitors to 85 websites on
+average each of the 6 months to May 2025.
+Up to $36 million in revenue in the year to May
+2026 for 18 websites based on outgoing traffic to
+payment processors.
+Excludes Telegram and app-based tools.
+
+Decisions to be made across the stack
+
+Platforms
+
+Decisions to be made across the stack
+
+Interfaces
+
+Decisions to be made across the stack
+
+Providers
+
+Content-based interventions
+
+Behavior-based interventions
+
+Actor based intervention using minimal investigation
+
+Countermeasures
+
+Scenario: your new AI API startup
+Want to build an AI marketplace
+Host AI models contributed by AI
+producers (users)
+Users can pay per query to AI models,
+producer gets cut
+Decision to not host any sexual content
+
+How do we build mechanisms
+for this T&S policy?
+
+Automating detection
+
+For rich media data, need other approaches to similarity matching:
+- PhotoDNA, PHash, PDQhash
+- Similarity hash function H s.t.:
+|H(image) – H(image’)| < threshold
+if image, image’ very similar
+
+Meta’s open source Hasher-Matcher-Actioner framework:
+https://github.com/facebook/ThreatExchange/tree/main/hasher-matcher-actioner
+
+Similarity hashing
+
+From: https://github.com/facebook/ThreatExchange/blob/main/hashing/hashing.pdf
+
+64x64 pixel
+downsample
+
+Discrete cosine
+transform (DCT)
+
+PDQhash at a high level
+
+Compare
+to Median
+
+Similarity measured by
+Hamming distance
+
+Operationalizing similarity hashing: StopNCII.org
+Proactive prevention of NCII spread
+Client-side hash of user content to generate along with report
+Hash and report sent to services
+Services check uploaded content against hash
+
+Machine-learned similarity measures
+Learning similarity between text and images
+CLIP (contrastive language-image pre-training) paper
+from OpenAI (https://openai.com/index/clip/)
+
+Two models:
+- text encoder (transformer)
+- image encoder (convolutional
+neural network or vision
+transformer)
+
+Dataset of image, text pairs
+(~400 million for original CLIP)
+Train the two encoders to ensure
+that dot products of vectors are high
+for paired values, otherwise not
+Gives similarity measure between
+text and image
+
+Approaches for preventing NSFW via generative AI
+Stable Diffusion type approaches allows text-to-image generation
+High level intuition: train architecture to repeatedly denoise image, conditioned on text embedding
+
+Denoising autoencoders (courtesy of wikipedia)
+
+Approaches for preventing NSFW via generative AI
+Stable Diffusion type approaches allows text-to-image generation
+High level intuition: train architecture to repeatedly denoise image, conditioned on text embedding
+
+Latent diffusion architecture (from https://arxiv.org/html/2404.06666v1)
+
+Approaches for preventing NSFW via generative AI
+Stable Diffusion type approaches allows text-to-image generation
+High level intuition: train architecture to repeatedly denoise image, conditioned on text embedding
+
+Approach
+
+When
+
+Description
+
+Examples
+
+Sanitize training set
+
+Training
+
+Remove NSFW data from
+training sets
+
+https://arxiv.org/pdf/2112.10741
+
+Erasing concepts
+
+Fine-tuning
+
+Fine-tune model to remove
+NSFW concepts from model
+
+https://arxiv.org/pdf/2303.07345
+https://arxiv.org/abs/2404.06666
+
+Inference modification
+
+Inference
+
+Modify generation algorithm
+to steer away from NSFW
+
+https://arxiv.org/pdf/2211.05105
+
+Guardrails
+
+Inference
+
+Check inputs, outputs, both
+for NSFW content
+
+https://arxiv.org/pdf/2210.04610
+
+Training set sanitization
+Use classifiers to detect NSFW training set instances, remove them
+Example from OpenAI paper (https://arxiv.org/pdf/2112.10741)
+Label (manually) as NSFW or not
+
+Data set
+
+Small
+random
+sample
+
+Accuracy (AC): (TP + TN ) / n
+Precision (PR): TP / (TP + FP)
+Recall (RE):
+
+TP / (TP + FN)
+
+F1 score:
+
+2TP / (2TP + FP + FN)
+
+AUC ROC:
+
+area under
+receiver-operating curve
+
+Training
+sample
+
+Train classification model f
+(e.g., pre-trained embedding + SVM)
+
+Test f on hold-outs to assess accuracy
+Test
+sample
+
+-
+
+n be number of items in dataset
+TP, TN = # of true positives/negatives
+FP, FN = # of false positives/negatives
+
+Another example: Nudenet detection tool
+
+Training set sanitization
+Use classifiers to detect NSFW training set instances, remove them
+Example from OpenAI paper (https://arxiv.org/pdf/2112.10741)
+
+For classifiers that output realvalued score, can tune by
+changing threshold
+
+From https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
+
+Erasing concepts
+Take a pre-trained model and edit it to try to “erase” concepts
+https://arxiv.org/pdf/2303.07345
+At a high level:
+- Using original “frozen” model to generate fine-tuned model
+- Loss function to penalize probability of generating images associated to concept c
+
+Erasing concepts
+Take a pre-trained model and edit it to try to “erase” concepts
+https://arxiv.org/pdf/2303.07345
+Inference
+modification approach
+
+Test images generated
+using inappropriate image
+prompts (I2P) dataset
+
+Filtered training approaches
+
+Test images classified via
+NudeNet classifier
+
+Prevention approaches: AI guardrails
+Guardrails or filters used to block content designers don’t want to allow
+- Apply to a query, response, or both
+- Syntactic rule-based approaches vs. ML approaches
+- “Corrective” approaches that automatically modify query and/or response
+Some examples: LlamaGuard, NVIDIA NeMo, GuardRail.AI
+
+https://arxiv.org/pdf/2402.01822
+
+Prevention approaches: generative AI guardrails
+
+https://aws.amazon.com/bedrock/guardrails/
+
+Prevention approaches: generative AI guardrails
+Stable Diffusion guardrail (2022).
+Reverse engineered [Rando et al. 2022]. Diagram from their paper:
+
+https://arxiv.org/pdf/2210.04610
+
+Evaluation via red teaming
+Stable Diffusion guardrail (2022).
+Reverse engineered [Rando et al. 2022].
+Jailbreak by generating an evasion strategy they called “prompt dilution”
+“A photo of a naked man” -> “A photo of a billboard above a street showing
+a naked man in an explicit pose”
+
+Lots of work on on algorithmic approaches for jailbreaking in this context
+E.g.: https://arxiv.org/pdf/2408.00523 uses LLM agents to build automated testing
+framework for text-to-image models
+
+Approaches for preventing generative AI
+Stable Diffusion type approaches allows text-to-image generation
+High level intuition: train architecture to repeatedly denoise image, conditioned on text embedding
+
+None of these are perfect.
+May never be
+Approach
+
+When
+
+Description
+
+Examples
+
+Sanitize training set
+
+Training
+
+Remove NSFW data from
+training sets
+
+https://arxiv.org/pdf/2112.10741
+
+Erasing concepts
+
+Fine-tuning
+
+Fine-tune model to remove
+NSFW concepts from model
+
+https://arxiv.org/pdf/2303.07345
+https://arxiv.org/abs/2404.06666
+
+Inference modification
+
+Inference
+
+Modify generation algorithm
+to steer away from NSFW
+
+https://arxiv.org/pdf/2211.05105
+
+Guardrails
+
+Inference
+
+Check inputs, outputs, both
+for NSFW content
+
+https://arxiv.org/pdf/2210.04610
+
+Complementary approaches
+Reporting pipelines
+Moderation of users, comments, etc.
+Takedown requests
+
+https://www.wired.com/story/deepfake-survivor-breeze-liu-microsoft/
+
+CS 5342 / INFO 5320 [11]
+
+Harm deep dive:
+Scams and fraud
+
+Oct 9, 2025 – Mantzarlis
+
+Today’s learning objectives
+
+Q.s you should be able to answer by the end of this class:
+What are prevalent and emerging forms of tech-enabled
+scams?
+What countermeasures can T&S teams adopt across the ABC
+and AIM framework to reduce the harm from scams?
+
+But first…the readings
+
+Defining the problem
+
+Platform
+
+The removal zone
+The moderation
+zone
+
+Interface
+
+Scams
+
+Provider
+
+Harm type
+
+Service type
+
+Scams are first and foremost a financial harm…
+
+Emotional
+Civic
+Financial
+Physical
+
+…which makes them more easily quantifiable (1/2)
+
+…which makes them more easily quantifiable (2/2)
+
+Scams still often ultimately take place on “old tech”…
+
+…but platforms tend to be seen as not doing enough
+
+And generative AI has added to the scammers’ toolkit
+
+Categories and countermeasures
+
+Categorizing scams
+NB: Table is incomplete, scammers use many methods, and examples are
+illustrative
+
+Method
+How the scammer secures resources from target
+Credential
+theft
+
+Fake identity /
+impersonation
+
+Blackmail
+
+Investment
+opportunity
+
+Lure
+How the mark is
+attracted to the
+scam
+
+Product or
+service
+
+AI-generated
+knock-off books
+
+Romantic or
+sexual content
+
+Romance scams
+
+Employment
+offer
+Assisting
+others in need
+
+Spoofed portals
+
+CV revision by
+“coaches”
+“Grandparent”
+scam
+
+Advance
+payment
+
+Fake
+advertising
+
+Pig butchering
+
+Deepfaked
+endorsements
+Fake user
+reviews
+
+Sextortion
+Visa / HR
+processing scam
+Disaster
+fundraisers
+
+Fake identity / impersonation
+
+Impersonation doesn’t need to be very sophisticated
+
+Nor is detection flawless
+
+Verification mechanisms need to be resistant to abuse
+
+Every countermeasure has its limits
+
+LinkedIn’s approach
+>80 million users verified as of April 2025
+(out of +1B…)
+Identity verification
+Govt-issued ID verified by a 3rd party:
+● CLEAR in the US
+● DigiLocker in India
+● Persona in other countries
+● Uploading a govt ID and live selfie
+Workplace verification
+● Work email 2FA for limited set of companies
+● Microsoft Entra verification (if enabled by
+company)
+● LinkedIn learning license
+● LinkedIn Recruiter subscribers
+
+(This too, opens new vectors for abuse.)
+
+Countermeasures for impersonation
+Actors
+Anticipate
+
+Behaviors
+
+User verification through a 3rd
+party provider
+
+Check on known celebrities,
+ideally through submission of
+their faces, especially in ads
+
+‘Personhood credentials’
+
+Incentivize
+
+Starling Bank Safe Phrases
+campaign
+Google’s safety tips
+
+Mitigate
+
+Content
+
+Stripe’s additional verification
+for companies restricted
+categories → “Businesses
+that are prone to abuse by
+fraudulent actors”)
+Bluesky tracks and labels
+impersonation accounts with
+high similarity to top accounts
+
+Fake advertising
+
+Financial returns: Crypto scam ads
+
+Social media is typically the top of the funnel
+
+The goal is almost always to bring you to a 1-to-1 channel
+
+Fake reviews are a big phenomenon
+
+Google blocked 115 million
+fake reviews in 2022
+Transparency Project
+assessed 17% of sample of
+73 million reviews were likely
+fake
+Incentive for both positive
+reviews and negative reviews
+
+Disaster fundraisers
+
+Countermeasures for fake products
+Actors
+
+Behaviors
+
+Content
+
+Anticipate
+
+Incentivize
+
+Mitigate
+
+Google Maps encourages
+“local guides” through
+gamification and rewards
+
+Amazon sued 10,000 fake
+review brokers operating on
+Facebook
+
+Etsy added warning
+Interstitials when going off of
+platform
+Amazon restricted authors
+from self-publishing more
+than three books a day
+Track creation of accounts
+with high similarity of profile
+picture, name, content to
+sensitive accounts
+
+GoFundMe allowlisted known
+fundraisers during the LA
+Fires
+
+Bitly tracks and blocks /
+warns for links to known
+badurls
+
+Blackmail
+
+Romantic or sexual content: Sextortion
+Yahoo Boys have killed more US kids in the past two years than ISIS ever. (-- P. Raffile)
+
+Lure and methods
+
+A cross-platform plague (again)
+
+Countermeasures for sextortion
+(From Paul Raffile talk at GASA)
+
+Actors
+
+Anticipate
+
+Content
+
+Meta designed “Yahoo
+Boys” as a dangerous
+group, allowing more
+concerted action.
+Meta hid by default
+following/followers
+accounts from ‘suspicious’
+accounts
+
+Incentivize
+
+Mitigate
+
+Behaviors
+
+Apple and Google removed
+Wizz from App Store and
+Play
+
+TikTok, YouTube, Wizz and
+others took down “scripts”
+
+Assignment 2
+
+Released today – due Oct 23
+
+●
+●
+●
+
+30% of your grade
+Working in groups – assigned today
+Set yourself up for success on Assmt 3
+
+CS 5342 [12]
+
+Harm deep dive:
+Hate, violence and terrorism
+
+Oct 21, 2025 – Mantzarlis
+
+Today’s learning objectives
+
+Q.s you should be able to answer by the end of this class:
+How does responsibility for moderating violent and hateful
+content vary depending on the form it takes?
+How can the "dangerous speech" framework help determine
+when T&S should intervene on hateful content?
+
+But first…
+
+Defining the problem
+
+The underlying harm risk is ultimately physical, but online
+manifestations aren’t always as straightforward
+The removal zone
+The moderation
+zone
+
+Interface
+
+Hate
+
+Violence,
+terrorism
+
+Provider
+
+Harm type
+
+Service type
+
+Platform
+
+Emotional
+Civic
+Financial
+Physical
+
+Three different and overlapping harms
+Violence: typically graphic/gory content representing or threatening
+physical abuse and blood (audio, text, video)
+Hate: typically harassment targeted at a specific protected group
+Terrorism/violent extremism: either or both of the above, but associated
+with a specific ideologically motivated and organizationally cohesive group
+
+A fuzzy spectrum of responsibilities
+Exposure
+
+Glorification
+
+Radicalization
+
+Enablement
+
+Adopting the notion of “dangerous speech”
+Look at elements that are often a precursor to physical harm (speaker, audience, context,
+medium, message).
+Message level markers:
+● Dehumanization: Represent a group as subhuman / bestial in order to remove inhibitions
+on mistreatment
+● Accusation in a mirror: Represent the group as a fundamental threat to the physical safety
+of those actually representing a threat
+● Threats to group integrity or purity: Represents the group as a contamination on traditional
+values. Culture, and wellbeing
+● Assertions of attacks against women and girls, or children: Represents group as a threat to
+groups represented as weaker and in need of defense
+● Questioning in-group loyalty: Represents group as a traitorous fifth column
+
+“After considering all five elements in turn, one asks on the basis of that analysis: did/would
+this message make people more ready to commit or condone violence? This is not a
+calculation or a formula; it is a qualitative assessment meant to help predict the behavior of
+other people.”
+
+Activity: Detecting “dangerous speech” elements
+
+Women are “…just not
+built to be completely
+independent creatures.
+[…] There is no such
+thing as an
+independent female,
+they’re all relying on a
+man to some degree.”
+
+“I don’t want to live in a country
+that looks nothing like the
+country I grew up in”
+“The long term agenda of
+refugee resettlement is to bring
+in future Democratic voters”
+
+The message is not the only element to consider
+
+Categories and countermeasures
+
+Hate
+
+Definitions
+Harassment targeted at a specific protected group, often defined with reference to antidiscrimination laws.
+
+In practice, however…
+
+Presence, recommendation, monetization
+
+On Steam, ADL found in 2024
+“827,758 user and group profiles
+with avatars that contained
+extremist or hateful symbols. The
+most popular were Pepe,
+swastikas, the white supremacist
+skull or “siege” mask and the Nazi
+Eagle. [ADL] also found 15,129
+profile avatars that contained the
+flags, emblems or logos of foreign
+terrorist organizations, the most
+popular of which was ISIS.”
+
+28,049 Telegram channels, with
+221,250 recommendations
+between them.
+
+Platform architecture eats moderation for lunch
+“We have evidence from a variety of sources that hate
+speech, divisive political speech, and misinformation on
+Facebook and the family of apps are affecting societies
+around the world. We also have compelling evidence that
+our core product mechanics, such as virality,
+recommendations, and optimizing for engagement, are a
+significant part of why these types of speech flourish on
+the platform… The mechanics of our platform are not
+neutral.”
+– Anonymous Facebook employee
+
+Countermeasures
+
+Countermeasures
+
+Challenges and exceptions
+
+Violence
+
+Definitions and prevalence
+Graphic content representing or
+threatening physical abuse and
+blood/gore.
+For example:
+● Cell phone, dash cam, or closed
+circuit TV footage showing the
+injured or killed in a road accident
+accompanied by titles such as
+“Crazy accident” (YouTube)
+● Videos of people, living or
+deceased, in non-medical contexts,
+depicting dismemberment; visible
+innards, such as exposed organs,
+bones, or muscle tissue on living or
+deceased persons (Meta)
+
+Countermeasures: ML detection
+Content based: Might focus on spatial features, be “skeleton-based,” audio-based, etc.
+
+From: Literature Review of Deep-Learning-Based Detection of Violence in Video
+
+Countermeasures: labels and self-harm support
+Content-based: trigger for specific queries or imagery/video
+
+Challenges and exceptions
+
+Terrorism
+
+Definitions
+Any content tied to a terrorist organization, supporting its work, or glorifying its actions and
+ideas.
+
+Geopolitics is as messy as content moderation
+
+Prevalence and forms
+
+Countermeasures for *known* content
+An industry-wide coalition sharing hashes of
+known terrorist content.
+Inclusion parameters:
+● Entity on UN Consolidated Sanctions list
+● Content tied to the perpetrator/accomplice
+of an attack that activates GIFCT Incident
+Response (started in response to
+Christchuch attack)
+● Aligned with “behavioral inclusion
+parameters”
+○ NGO with specific identifier, core hatebased ideology and call to violence
+○ Can include attacker manifestos,
+branded publications, and URLs
+
+Assignment 2 is due on Thu!
+
+CS 5342 / INFO 5320 [13]
+
+Harm deep dive:
+Misinformation and disinformation
+
+Oct 23, 2025 – Mantzarlis
+
+But first, the readings…
+
+Definitions, form, and prevalence
+
+A premise about wrongness on the internet
+
+The vast majority of online misinformation should
+not be moderated.
+We care about misinformation (and especially
+disinformation) when it intersects with a topic where
+falsehoods have a risk of causing harm.
+The challenges of moderating misinformation (and
+America’s 1A tradition) have often meant that T&S
+solutions here often come in the form of context
+rather than takedowns.
+
+Under the hood of Google Ranking: Search Quality Rating
+
+Misinformation is a microcosm of content moderation
+The removal zone
+The moderation
+zone
+Misinfo
+& disinfo
+
+Interface
+Provider
+
+Harm type
+
+Service type
+
+Platform
+
+Emotional
+Civic
+Financial
+Physical
+
+“YMYL” topics are those we
+pay closer attention to
+
+Google Search guidelines ask raters to assess
+websites that are about topics “that could
+significantly impact the health, financial
+stability, or safety of people, or the welfare or
+well-being of society.”
+
+Most platforms adopt some version of this approach
+
+Often with an eye to offline harms
+
+Platform dynamics supercharge misinformation spread
+
+The spread of true and false news online | Science
+
+Especially when platforms encourage expressing outrage
+
+Misinformation exploits outrage to spread online | Science
+
+Reducing reach is not reducing speech
+
+Hyperpartisanship makes this harder…
+
+Differences in misinformation sharing can lead to politically
+asymmetric sanctions
+
+Republicans are flagged more often than Democrats for sharing
+misinformation on X’s Community Notes
+
+…but majorities support platform action on misinfo*
+
+Political elites push back against T&S interventions
+
+And platforms have mostly capitulated
+
+Risk mitigation is a legal requirement in the EU
+
+Content-based countermeasures
+
+Major intervention types
+●
+●
+●
+●
+
+Surfacing counterspeech
+Labeling topic areas
+Labeling content by type (e.g. AI-generated)
+Labeling content as false: 3PFC vs Community Notes
+
+Highlighting counterspeech (Google)
+
+🥸
+
+Highlighting counterspeech (Twitter)
+
+🥸
+
+Labeling topic areas
+
+🥸
+
+🥸
+
+Labeling topic areas
+
+🥸
+
+Data Voids and Warning Banners on Google Search
+
+~1% of all
+Search results
+(mostly the
+first)
+
+Labeling content as false
+
+Labeling content: Meta’s 3PFC program (🪦 )
+
+Classifier/fact-checkers/users flag
+possible misinformation
+
+IFCN verified Fact-checkers review the
+claim and determine it to be misinfo
+
+Fact check appended to post, future
+reach reduced by 80%
+
+Exact matches are labeled through ML
+
+Mostly targeted clickbaity fakes, with low error rate
+
+And generally improved user understanding
+
+Regardless of impact on belief, it reduced spread
+
+“On average 38% of people on
+Instagram and 37% of people on
+Facebook in the EU who start to share
+fact-checked content do not complete
+this action after receiving a warning
+that the content has been factchecked.”
+
+Limits: Evidence can be contested, unavailable, or shifting
+
+Labeling content: Birdwatch / Community notes
+
+Contributors write a note about a fact
+check that needs context
+
+Other contributors rate as helpful / not
+helpful
+
+“Bridging” algorithm detects notes
+with consensus likes
+
+Note is appended to tweet
+
+What it looks like
+
+(Everyone else has copied it)
+
+🤨
+
+Rationale
+Fact-checking is slow, lying is fast – and
+technology can’t change that.
+“Arbiters of truth” are under attack.
+WANT: scale (fact checks) and legitimacy
+NEED: scale (many contributors), quality,
+efficacy, procedural integrity, collective
+identity, ε?
+
+Scale, quality, and efficacy
+Daily average of 86,000 people rating notes, 246 posts
+with approved notes out of 2170 posts with proposed
+notes (Dec. 2024).
+Median time of approval of a helpful note: 14hr 30min
+Decent agreement with ClaimReview data (2021)
+98% accuracy on 205 COVID-19 related notes
+Increased probability of tweet deletion by author of 80%
+
+Who is contributing?
+
+Limitations: motivations and dependencies
+
+Limitations: Coverage and consensus-based-facts
+Noisy:
+● Ahead of US election, fewer that 6% of notes rated
+helpful.
+● On the day of the election, only 29% of 166 factcheckable tweets in sample carried helpful note
+(recall). Only 67% of helpful notes are assigned to a
+fact-checkable tweet (precision)
+Highly restrictive:
+● Bridging algorithm works – to a fault. Even
+professional fact-checkers bat 35/174.
+● Signs of NNN brigading efforts.
+
+Can the tool survive Elon Musk?
+Monthly active authors are down
+
+And Elon is increasingly skeptical
+
+Can the tool survive AI??
+
+Share of helpful notes is going down, users are motivated by getting published, and AI can only contribute…
+
+Can the tool survive (Grok) AI? Should it?
+
+Maybe there’s a space for AI outside breaking news
+
+Labeling content by type
+
+AI watermarks/labels
+
+Accurate tagging enables user agency
+
+Good-faith sharing is powered by metadata
+
+Limit: Watermarks are brittle
+
+Limit: Detectors are bad
+
+Limit: Users don’t notice
+
+Behavior-based interventions
+
+Influence operations are cheap and popular
+
+Manufacturing consent
+Influence operations
+attempt to distort public
+perception, often of a
+foreign adversary, to meet
+a geopolitical goal.
+They typically do so
+through large-scale and
+multi-dimensional
+impersonation campaigns.
+
+Borrowed legitimacy: Vox populi
+
+Borrowed legitimacy: News media
+
+Borrowed legitimacy: Partisan influencers
+
+Subverting legitimacy: Seeking amplification
+
+Borrowed legitimacy: Lifestyle influencers
+
+“Jason Lightfoot is also on its list
+of stringers. The station billed him
+as a vlogger critical of "distorted
+reports" by Western media outlets.”
+
+Early adopters of generative AI
+
+Even if they sometimes stumble
+
+More behavioral elements
+
+Countermeasures and challenges
+
+Countering information operations
+
+Main requirements:
+1. Expert in house intelligence functions that
+can fingerprint actors and track their modus
+operandi with internal and external data
+2. Sophisticated anti impersonation and bot
+detection mechanisms
+3. Signal-sharing with industry and government
+4. Additional protections for sensitive spaces
+(e.g. advertising, news, etc)
+
+Labeling state media
+Warning users that a publisher’s agenda may be informed by its ties to government.
+
+But does it work?
+Probably not as an anti-disinformation claim.
+
+Not all media ecosystems are created equal
+
+Case study: Google vs Russian state-controlled media
+
+Following the invasion of Ukraine in Feb.
+2022, Google banned Russian statecontrolled media from advertising and being
+recommended to users.
+It eventually deplatformed the channels
+altogether from Discover, News, Play,
+YouTube.
+Billions of views affected.
+
+Grounding
+
+Motivations
+
+Challenges
+“State control” is a slippery concept. An actor-based policy quickly devolves into a contentbased one when there is a concerted effort to circumvent it.
+
+Where do you draw the line?
+
+Consequences
+
+American geopolitics frame T&S Overton Window
+
+Actor-based are the ‘nuclear option’. But they work
+
+Post-January 6th deplatforming reduced the reach of misinformation on Twitter | Nature
+
+And can be highly targeted to ‘superspreaders'
+
+Identifying and characterizing superspreaders of low-credibility content on Twitter | PLOS One
+
+CS 5342 / INFO 5320 [13 continued]
+
+Harm deep dive:
+Misinformation and disinformation
+
+Oct 28, 2025 – Mantzarlis
+
+But first, the readings…
+
+Content-based countermeasures
+
+Labeling content as false
+
+Labeling content: Meta’s 3PFC program (🪦 )
+
+Classifier/fact-checkers/users flag
+possible misinformation
+
+IFCN verified Fact-checkers review the
+claim and determine it to be misinfo
+
+Fact check appended to post, future
+reach reduced by 80%
+
+Exact matches are labeled through ML
+
+Who is contributing?
+
+Limitations: motivations and dependencies
+
+Limitations: Coverage and consensus-based-facts
+Noisy:
+● Ahead of US election, fewer that 6% of notes rated
+helpful.
+● On the day of the election, only 29% of 166 factcheckable tweets in sample carried helpful note
+(recall). Only 67% of helpful notes are assigned to a
+fact-checkable tweet (precision)
+Highly restrictive:
+● Bridging algorithm works – to a fault. Even
+professional fact-checkers bat 35/174.
+● Signs of NNN brigading efforts.
+
+Can the tool survive Elon Musk?
+Monthly active authors are down
+
+And Elon appears increasingly skeptical
+
+Can the tool survive AI??
+
+Share of helpful notes is going down, users are motivated by getting published, and AI can only contribute…
+
+Can the tool survive (Grok) AI?
+
+Can the tool survive (Grok) AI? Should it?
+
+Maybe there’s a space for AI outside breaking news
+
+Labeling content by type
+
+AI watermarks/labels
+
+Accurate tagging enables user agency
+
+Labeling of good-faith AI content is powered by metadata
+and visible watermarks
+
+The industry has (mostly) coalesced around C2PA
+C2PA Content Credential: “a cryptographically bound structure that records an asset’s
+provenance. Content Credentials, also known as a C2PA Manifest, contain one or more
+assertions, which are statements about the asset, such as its origin (i.e., when and where it
+was created), modifications (i.e., what happened using what tools) and use of AI (i.e., how it
+was authored).”
+
+Even as each company builds its own solutions too
+
+Limit: Watermarks are brittle, x-platform implementation
+difficult
+
+Limit: Commercial detectors overpromise
+
+Limit: Users don’t notice
+
+Combating disinformation
+(i.e. behavior- and actor-based
+interventions)
+
+Influence operations are cheap and popular
+
+Manufacturing consent
+Influence operations
+attempt to distort public
+perception, often of a
+foreign adversary, to meet
+a geopolitical goal.
+They typically do so
+through large-scale and
+multi-dimensional
+impersonation campaigns.
+
+Attempts to manipulate results
+
+Borrowed legitimacy: Vox populi
+
+Borrowed legitimacy: News media
+
+Borrowed legitimacy: Lifestyle influencers
+
+“Jason Lightfoot is also on its list
+of stringers. The station billed him
+as a vlogger critical of "distorted
+reports" by Western media outlets.”
+
+Borrowed legitimacy: Partisan influencers
+
+Subverting legitimacy: Seeking amplification
+
+Early adopters of generative AI
+
+Countermeasures and challenges
+
+Countering information operations
+
+Main requirements:
+1. Expert in house intelligence functions that
+can fingerprint actors and track their modus
+operandi with internal and external data
+2. Sophisticated anti impersonation and bot
+detection mechanisms
+3. Signal-sharing with industry and government
+4. Additional protections for sensitive spaces
+(e.g. advertising, news, etc)
+
+Labeling actors who might disinform
+
+Labeling state media
+Warning users that a publisher’s agenda may be informed by its ties to government.
+
+But does it work?
+Probably not as an anti-disinformation claim.
+
+Not all media ecosystems are created equal
+
+Case study: Google vs Russian state-controlled media
+
+Following the invasion of Ukraine in Feb.
+2022, Google banned Russian statecontrolled media from advertising and being
+recommended to users.
+It eventually deplatformed the channels
+altogether from Discover, News, Play,
+YouTube.
+Billions of views affected.
+
+Grounding
+
+Motivations
+
+Challenges
+“State control” is a slippery concept. An actor-based policy quickly devolves into a contentbased one when there is a concerted effort to circumvent it.
+
+Where do you draw the line?
+
+Consequences
+
+American geopolitics frame T&S Overton Window
+
+Actor-based are the ‘nuclear option’. But they work
+
+Post-January 6th deplatforming reduced the reach of misinformation on Twitter | Nature
+
+And can be highly targeted to ‘superspreaders'
+
+Identifying and characterizing superspreaders of low-credibility content on Twitter | PLOS One
+
+Assignment 3
+
+Released today – due Nov 18
+
+●
+●
+●
+
+30% of your grade
+Working in same groups of Assmt 2
+Think about this for your portfolio!
+
+CS 5342 [15]
+
+Harm deep dive:
+Bias
+
+Nov 3, 2025 – Ristenpart
+
+Bias in decision making has long history
+Home Owners' Loan Corporation (HOLC)
+Company setup by the USG to provide home
+mortgages.
+Explicitly used racial, ethnic, immigrant status to
+determine creditworthiness
+“Redlining”:
+Withhold financial services from neighborhoods
+with large fraction of racial or ethnic minorities
+
+“Reverse redlining”:
+Charge higher interest in majority-minority
+neighborhoods
+
+http://cml.upenn.edu/redlining/HOLC_1936.html
+
+Why and when to worry about discrimination?
+United States’ legal landscape
+
+https://fairmlbook.org/legal.html
+
+Hungry judge “effect”
+2011 study purportedly showing that judges’ decisions more lenient after a meal break
+
+Often cited as reason why algorithmic decision making could lower bias
+Subsequent analysis: study is flawed, effect is due to scheduling considerations
+
+Prompt: “hungry judge”
+
+ChatGPT: “create an image of a hungry judge”
+
+Bing (gpt-4o): “hungry judge”
+
+Why and when to worry about discrimination?
+Moral arguments:
+relevance, generalization, prejudice, disrespect, immutability, compounding injustice
+Equality of opportunity often a goal targeted
+
+https://fairmlbook.org/relative.html
+
+The context: COMPAS risk scoring
+COMPAS is tool for predicting risk of recidivism, used
+for pre-trial bail decisions
+Computes risk score r(x) between 1 and 10 where x is
+a feature vector describing person
+For simplicity, let’s boil down to binary classification:
+Medium/high risk (5-10) or low risk (1-4)
+
+y’ = f(x)
+
+where
+
+y’ = 1 if r(x) ≥ 5
+y’ = 0 otherwise
+
+Explicit vs implicit features
+Analogue of redlining here would be to include race, ethnicity or other protected
+attributes in feature vector x
+Sensitivity analysis to gauge dependence of f(x) on sensitive attributes
+Even if not explicit, other features may be proxy for, i.e., correlate with, race
+
+Example from
+https://fairmlbook.org/classification.html
+
+“No fairness through
+unawareness”
+Slight difference in distribution of
+a feature based on protected
+
+Accuracy of classifier given
+indicated # of such features
+
+How did ProPublica analyze bias?
+Get COMPAS dataset via public records request (~18k records, including demographics)
+Focus on those that used COMPAS for pre-trial release decisions (~11k records)
+Associate to publicly accessible criminal records (join via first, last name, date of birth)
+Define recidivism and determine recidivism outcomes
+
+https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm
+
+Further analysis
+Performed a logistic regression using a
+variety of features to understand which
+features most strongly influence risk score
+
+Other findings include:
+Higher false positive rate for black people (44%)
+than for white people (23%)
+
+Letting X, Y, A be random variables describing
+feature vector, (true) recidivism outcome, and race
+FPR for black people = Pr[ f(X) = 1 | Y = 0, A = b]
+FPR white people
+= Pr[ f(X) = 1 | Y = 0, A = w]
+
+https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb
+
+A confusing rebuttal: accuracy equity & predictive parity
+Northpointe employees provide rebuttal:
+ProPublica wrong, actually we achieve predictive parity
+Letting X, Y, A be random variables describing feature vector, (true) recidivism outcome, and race
+ProPublica:
+Pr[ f(X) = 1 | Y = 0, A = b]
+
+≠
+
+Pr[ f(X) = 1 | Y = 0, A = w]
+
+Northpointe argues (roughly) that for any risk score s:
+Pr[ Y = 1 | r(X) = s , A = b ]
+
+=
+
+Two different
+notions of fairness!
+
+Pr[ Y = 1 | r(X) = s , A = w ]
+
+https://go.volarisgroup.com/rs/430-MBX-989/images/ProPublica_Commentary_Final_070616.pdf
+
+Notions of fairness: independence, separation, sufficiency
+Independence (aka demographic parity, statistical parity, group fairness, disparate impact)
+Pr[ f(X) = 1 | A = b ]
+
+=
+
+Pr[ f(X) = 1 | A = w ]
+
+Separation (aka error rate parity)
+
+Pr[ f(X) = 1 | Y = 0, A = b]
+
+=
+
+Pr[ f(X) = 1 | Y = 0, A = w]
+
+Pr[ f(X) = 1 | Y = 1, A = b]
+
+=
+
+Pr[ f(X) = 1 | Y = 1, A = w]
+
+Sufficiency (aka calibration by group, predictive parity)
+For all values s:
+Pr[ Y = 1 | r(X) = s , A = b ]
+
+=
+
+Classification independent of A
+when conditioned on true outcome
+
+Outcomes not dependent on race
+when conditioned on score
+
+Pr[ Y = 1 | r(X) = s , A = w ]
+
+Both holding implies that Y independent of A
+=> Race and recidivism unrelated
+
+Notions of fairness: independence, separation, sufficiency
+For most problems of interest,
+no two fairness properties can be guaranteed simultaneously
+
+See
+https://fairmlbook.org/classification.html
+
+What notion of fairness would you target?
+Independence (aka demographic parity, statistical parity, group fairness, disparate impact)
+Pr[ f(X) = 1 | A = b ]
+
+=
+
+Pr[ f(X) = 1 | A = w ]
+
+Separation (aka error rate parity)
+
+Pr[ f(X) = 1 | Y = 0, A = b]
+
+=
+
+Pr[ f(X) = 1 | Y = 0, A = w]
+
+Pr[ f(X) = 1 | Y = 1, A = b]
+
+=
+
+Pr[ f(X) = 1 | Y = 1, A = w]
+
+Sufficiency (aka calibration by group, predictive parity)
+For all values s:
+Pr[ Y = 1 | r(X) = s , A = b ]
+
+=
+
+Classification independent of A
+when conditioned on true outcome
+
+Outcomes not dependent on race
+when conditioned on score
+
+Pr[ Y = 1 | r(X) = s , A = w ]
+
+Both holding implies that Y independent of A
+=> Race has no impact on recidivism
+
+“Traps” in abstracting social problems to technical ones
+The framing trap
+
+Failure to model the entire system over which a social criterion, such as
+fairness, will be enforced
+
+The portability trap
+
+Failure to understand how repurposing algorithmic solutions designed for
+one social context may be misleading, inaccurate, or otherwise do harm
+when applied to a different context
+
+The formalism trap
+
+Failure to account for the full meaning of social concepts such as fairness,
+which can be procedural, contextual, and contestable, and cannot be
+resolved through mathematical formalisms
+
+The ripple trap
+
+Failure to understand how the insertion of technology into an existing social
+system changes the behaviors and embedded values of the pre-existing
+system
+
+The solutionism trap
+
+Failure to recognize the possibility that the best solution to a problem may
+not involve technology
+
+https://dl.acm.org/doi/pdf/10.1145/3287560.3287598
+
+Another case study: resume review processes
+
+Another case study: resume review processes
+Test for bias by gathering
+dataset of resumes
+Attach names
+- Last name Williams
+- First name
+either
+black male, black female,
+white male, white female
+(from dataset)
+Run through LLM-based
+embeddings to see which get
+ranked closest to job description
+
+https://ojs.aaai.org/index.php/AIES/article/view/31748/33915
+
+Another case study: resume review processes
+
+“Resumes with White male names are
+preferred in 100% of tests; those with
+Black male names are preferred in 0%.”
+
+https://ojs.aaai.org/index.php/AIES/article/view/31748/33915
+
+Bias in moderation tools
+Perspective API by Jigsaw (division of Google) used to classify text
+
+“As a Black woman, I agree with the previous comment.”
+-> toxicity 0.32
+“As a French man, I agree with the previous comment”
+-> toxicity 0.03
+
+https://medium.com/jigsaw/unintended-bias-and-names-of-frequently-targeted-groups-8e0b81f80a23
+https://algorithmwatch.org/en/automated-moderation-perspective-bias/
+
+Auditing and testing mechanisms
+Mature ecosystem of (open-source) tools for fairness analyses
+
+https://fairlearn.org
+
+https://github.com/columbia/fairtest
+
+Auditing and testing mechanisms
+Testing black-box systems can be tricky
+Example: online advertising
+Carefully setup browser instances that are
+identical except for variables of interest
+(e.g., gender of simulated user)
+
+https://arxiv.org/pdf/1408.6491
+
+How to avoid bias in ML?
+Pre-processing:
+Adjust the feature space to be uncorrelated with the sensitive attribute
+In-training:
+Work the constraint into the optimization process that constructs a classifier from
+training data
+Post-processing:
+Adjust a learned classifier so as to be uncorrelated with the sensitive attribute
+
+https://fairmlbook.org/classification.html
+
+Adversarial training for fairness
+Build into training pipeline penalization for exhibiting biases
+“Adversarial” network that predicts protected attribute given model’s prediction and real value
+Train together (GAN, generative adversarial network) with joint loss function across predictor
+and adversarial network
+
+https://dl.acm.org/doi/pdf/10.1145/3278721.3278779
+
+Restricting use of model
+
+https://www.nytimes.com/2023/05/22/technology/ai-photo-labels-google-apple.html
+
+Summary
+Potential bias in automated systems, decision making arises wherever algorithms used
+
+Bias exists in human systems too
+How to define fairness is both normatively and formally tricky:
+- Beware of pitfalls in abstracting to technical problem
+- Formal fairness goals have been shown to be pairwise incompatible
+Technical interventions:
+- Testing and auditing frameworks
+- New training approaches
+
+CS 5342 / INFO 5320 [16]
+
+Technical perspectives on LLMs in
+moderation
+
+Nov 11, 2025 – Ristenpart
+
+LLM-based moderation: promise or peril?
+
+Moderation frameworks/APIs have proliferated
+
+https://platform.openai.com/docs/guides/moderation/overview?lang=python
+
+Building moderator API: how to get started?
+Often start by building taxonomy of types
+of content you want to detect
+PerspectiveAPI:
+- Toxicity, Severe Toxicity, Identity
+Attack, Insult, Profanity, Threat
+
+OpenAI Mod API:
+- Sexual content, Hateful content,
+Violence, Self-harm, Harassment
+Llama Guard:
+- Violence & Hate, Sexual content,
+Guns & Illegal Weapons, Regulated
+or Controlled Substances, Suicide &
+Self-harm, Criminal planning
+
+Building moderator API: how to get started?
+1. Train your own models
+
+1. Tune existing models
+
+1. Use existing models (zero-shot, few-shot learning)
+
+Moderator model training: OpenAI Mod API
+[Markov et al. 2023] by OpenAI
+
+https://arxiv.org/pdf/2208.03274
+
+Defining what types of behaviors you want to moderate
+Building labeling instructions based on policy descriptions:
+Quality control
+Relative observed
+Calibration sessions
+agreement rate
+
+Cohen’s kappa (inter-rater reliability):
+
+1 is perfect agreement
+0 means essentially chance
+
+Chance
+agreement rate
+
+Moderator model training: OpenAI Mod API
+[Markov et al. 2023] by OpenAI
+
+https://arxiv.org/pdf/2208.03274
+
+Defining what types of behaviors you want to moderate
+Building labeling instructions based on policy descriptions:
+Quality control
+Calibration sessions
+Gathering datasets
+Public datasets may not match production datasets
+More data not always better!
+First stage:
+Zero-shot generation of initial datasets (use generative AI to build a dataset)
+Random sampling, classify using current classifier
+Ongoing:
+Active learning to detect outliers to improve dataset
+I hate this
+weather
+
+Sexual (0.03)
+Hateful (0.53)
+Violence (0.10)
+…
+
+Collect inputs for which:
+current model has low certainty
+current model has high certainty
+random sampling
+
+Moderator model training: OpenAI Mod API
+[Markov et al. 2023] by OpenAI
+
+https://arxiv.org/pdf/2208.03274
+
+Defining what types of behaviors you want to moderate
+Gathering datasets
+Labeling mistakes inevitable
+Need management plan
+Cross-validation, prompt subtraction
+
+I hate this
+I hate this
+weather
+I
+hate this
+weather
+weather
+
+I hate this
+I hate this
+weather
+I
+hate this
+weather
+I
+hate this
+weather
+I
+hate this
+weather
+I
+hate this
+weather
+weather
+
+Labeled data
+
+I hate this
+I hate this
+weather
+I
+hate this
+weather
+weather
+
+Model 1
+
+Classify
+other half
+Audit random
+sample of
+misclassified
+labels
+
+Model 2
+
+Classify
+other half
+
+Moderator model training: OpenAI Mod API
+[Markov et al. 2023] by OpenAI
+
+https://arxiv.org/pdf/2208.03274
+
+Defining what types of behaviors you want to moderate
+Gathering datasets
+Labeling mistakes inevitable
+Training imbalance causes challenges
+ML easily over-generalizes correlations (words often used in hateful content
+causes erroneous classifications)
+Key token probing:
+"all immigrants." classified as hate
+Why?
+Overfitted to keywords in hateful
+training data
+Greedily remove tokens from prompt
+until classifier accuracy <80%
+Validate remaining keywords are unsafe
+
+Red teaming:
+Production red team used to test model
+for “unexpected model weaknesses”
+Found “#” had high hate scores
+Found “black” had high hate &
+violence scores
+Build new synthetic data to retrain to try
+to correct for such effects
+
+https://arxiv.org/pdf/2208.03274
+
+OpenAI Mod API paper results
+
+AUPRC
+(area under precisionrecall curve)
+
+https://arxiv.org/pdf/2208.03274
+
+Building model from scratch is resource intensive
+Increasingly: fine-tune pretrained models, develop prompting strategies
+
+https://arxiv.org/pdf/2109.01652
+
+Llama Guard: chatbot moderation framework
+
+Llama Guard: chatbot moderation framework
+Make up their own taxonomy of harm categories
+Use data set from Anthropic for prompts, generate responses with Llama
+Red team annotates based on the taxonomy (agreement???)
+
+Llama Guard: chatbot moderation framework
+Instruction following framework [Wei et al. 2022]:
+- Take pretrained LM, instruction tune (finetune natural language instruction tasks)
+
+https://arxiv.org/pdf/2109.01652
+
+Llama Guard: Llama-2-7B fine tuned using 3/4 of dataset (one machine w/ 8xA100 80 GB GPUs)
+1/4 used for evaluation
+
+Llama Guard: chatbot moderation framework
+
+AUPRC (higher is better)
+
+AUPRC for request / response classification
+
+Building model from scratch is resource intensive
+Increasingly: fine-tune pretrained models, develop prompting strategies
+
+https://arxiv.org/pdf/2109.01652
+
+https://koustuv.com/papers/CHI24_EA_LLM-Mod.pdf
+
+Evaluating LLM-based moderation for Reddit
+[Kumar, AbuHashem, Durumeric 2024]:
+- Evaluate LLMs on:
+- Reddit community rules (95 subcommunities)
+- Use 2018 dataset of moderated (500) & unmoderated (500) posts
+- Toxicity detection
+You are a helpful content moderation assistant for the online
+subreddit <subreddit>. The subreddit has the following
+description: <description>. Here are the rules for the subreddit:
+<rule_texts>
+Consider the following comment:
+<example_comment>
+Return a JSON object with five fields, "would_moderate," that
+is either "yes" or "no" depending on if you would remove this
+comment from the subreddit, "rules" which are the text of the
+rules being violated, "rule_nums" which are a commaseparated list of rules being violated, "rating" which is a score
+from 1-5 on how violative the comment is, and "explanation"
+which provides a reason for your decision.
+
+gpt3.5
+{
+“Would_moderate” : “yes”,
+“Rules” : “no toxicity”,
+“Rule_nums”: …
+…
+}
+
+r/movies
+
+r/askscience
+CDF of rule-based moderation aggregate performance by Subreddit
+
+False negatives: 86.9% of all errors
+False positives: 13.1% of all errors
+
+r/NSFW_GIF:
+
+31% FN, 68% FP
+
+Evaluating LLM-based moderation for Reddit
+March 2023
+2023
+
+“Our results suggest that human moderators need to stay
+significantly in the loop as models grow and evolve.”
+
+June
+
+Evaluating LLM-based moderation for Reddit
+Definition of toxicity from Google Jigsaw:
+“A rude, disrespectful, or unreasonable comment that is likely
+to make someone leave a discussion”
+Use LLMs to detect toxic content: use prior dataset with toxicity labels
+
+Evaluating LLM-based moderation for Reddit
+Definition of toxicity from Google Jigsaw:
+“A rude, disrespectful, or unreasonable comment that is likely
+to make someone leave a discussion”
+Use LLMs to detect toxic content: use prior dataset with toxicity labels
+
+Profanity, slurs
+
+Policy as prompt?
+Reddit study example of using prompts to specify policy
+We will see increasing use of this paradigm
+
+https://arxiv.org/pdf/2502.18695v1
+
+Deployment & security
+Can deploy LLM-based moderators, often as two-stage:
+- Algorithmic flagging, action taken on high confidence cases
+- Human-in-the-loop review process
+Need human-in-the-loop monitoring
+- Distribution drift (e.g., new classes of hateful content)
+- Policy changes (e.g., Facebook breast feeding example)
+Adaptive adversarial behavior:
+- Evasion attacks: small changes to input that evade detection
+- Public API endpoints, open-source models can make this easier for attackers
+
+CS 5342 / INFO 5320 [17]
+T&S, emotional labor, and self-care
+
+Apr 22, 2025 – Ristenpart
+
+Today’s learning objectives
+
+Q.s you should be able to answer by the end of this class:
+-> What is emotional labor and why is it important?
+-> What is trauma informed practice?
+-> What are symptoms of burnout and what is self-care?
+-> How do we build in support within our teams?
+
+Grounding techniques
+Practices that help distract from fears and unwanted memories/thoughts
+●
+●
+●
+●
+●
+
+Make a mental list of every color you can see in the room, or everything you can hear
+Grip the chair arms
+Press your feet against the floor (even use a mental crayon to outline them)
+Stretch
+Breathing exercises
+
+https://hr.jhu.edu/wp-content/uploads/JHEAP-Grounding-Techniquesto-Help-Control-Anxietypdf.pdf
+
+Emotional labor
+“trying to feel the right feeling for a job, either by evoking or suppressing feelings.” - Wikipedia
+Coined by Hothschild in 1983 book “The Managed Heart”:
+● Investigated through lens of service workers (flight attendants, bill collectors)
+● Cognitive, bodily, expressive mechanisms for emotional regulation strategies
+
+Emotional labor often unrecognized and unaccounted for
+
+Burnout
+Physical and emotional exhaustion that workers can experience when they have low
+job satisfaction and feel powerless and overwhelmed at work
+Contributing factors:
+● feeling either constantly overworked or under-challenged,
+● being under time pressure all the time,
+● having conflicts with colleagues, and
+● extreme commitment with people neglecting their own needs.
+
+Symptoms
+● exhaustion
+● alienation from work-related activities
+● reduced performance
+
+Trauma
+Results from experiences that are physically or emotionally harmful with lasting adverse
+effects on the ability to function and mental, physical, social, emotional well-being
+(SAMHSA)
+Studies suggest >68% of people experience trauma at some point in their lives
+People experience trauma differently
+
+Trauma can cause emotional, neurological, behavioral changes
+
+Trauma stress reactions
+Human survival instincts developed in
+response to the traumatic event(s)
+Physical (trouble sleeping, hyperarousal, …)
+Emotional (anxiety, severe mood swings, …)
+Behavioral (avoidance, high-risk activities, …)
+Cognitive (hypervigilance, intrusive thoughts, …)
+Existentially (hopelessness, confidence)
+
+Trauma impacts technology experience
+
+Example of hypervigilance:
+
+extreme sensitivity to potential threats
+
+Trauma impacts technology experience
+
+https://www.nytimes.com/2022/11/02/podcas
+ts/modern-love-internet-miscarriage.html
+
+https://www.reddit.com/r/Miscarriage/comments/v8govo/targeted_ads_are_killing_me/
+
+Trauma-informed computing
+Adapt viewpoint of trauma-informed practice to digital tech:
+
+“Trauma-informed computing is an ongoing commitment to improving the
+design, development, deployment, and support of digital technologies by
+explicitly acknowledging trauma and its impact, recognizing that digital
+technologies can both cause and exacerbate trauma, and actively seeking
+out ways to avoid technology-related trauma and retraumatization.”
+
+https://nixdell.com/papers/chi22-trauma-informed-computing.pdf
+
+SAMHSA guide on trauma-informed practice: https://library.samhsa.gov/sites/default/files/sma14-4884.pdf
+
+Systems trauma
+People trying to get help may experience further trauma:
+● Invalidation, disbelief, minimization
+● Over-promising and under-delivering
+● Arduous processes, getting the “run-around”
+● Retelling stories over and over again
+
+Case study: computer security customer service
+Investigated customer service and its role for atrisk populations such as IPV survivors
+
+Analyzed ~18k customer service chats
+~1k involved descriptions of interpersonal attacks
+53 explicitly mention intimate partner violence
+
+“I found out my soon-to-be ex-wife hired a professional
+hacker to mess me and my folk’s computers and phones
+up...just had a heart attack from the stress.”
+
+https://www.usenix.org/system/files/sec21-zou.pdf
+
+Case study: computer security customer service
+Build representative support scenarios. Focus groups with
+● survivor support professionals,
+“I understand that the role of customer support is to make
+● customer service professionals
+their customer feel better. But this is just a space where
+. . . they have a limited capacity to make [the survivor] feel
+better . . . I think the goal should be to hear and be honest
+about the limitations of what [product] can or cannot do
+in those moments.” (P11, attorney)
+“These stories add up. I think they take a toll on us,
+particularly for people who aren’t aware of them. For
+people who [first] learned about how prevalent this
+problem really is, it can be a bit of a shaky, shattering
+moment for them.” (S8, content writer)
+
+“Some of these calls will be harmful to the people who
+receive them. They’ll be really traumatized by these experiences . . . Any company that’s recognizing their frontline
+employees are experiencing these phone calls needs to
+think about how to support employees through secondary
+trauma issues and process it.” (P13, legal advocate)
+
+Secondary trauma (aka vicarious trauma)
+Acute response to being exposed to someone else’s traumatic experience
+
+Negative
+● burnout
+● 'compassion fatigue'
+● inability to concentrate
+● avoidance
+● lack of joy
+● physical issues (lack of appetite,
+sleep issues)
+● irritability
+● sadness or numbness
+● 'savior'/lack of boundaries
+
+Neutral/Positive
+● vicarious resilience
+● compassion satisfaction
+● engagement
+● gratitude and appreciation
+● 'switch off'
+● boundaries
+● prioritizing self and needs
+● experience sharing
+
+Strategies for vicarious trauma
+[McCann & Pearlman 1990]:
+● Striving for balance between our personal and professional lives;
+● Balancing a clinical caseload with other professional involvements such as research
+and teaching that can replenish us;
+● Balancing victim with non-victim cases;
+● Being aware of and respecting our own personal boundaries, such as limiting evening
+or weekend work;
+● Developing realistic expectations of ourselves in doing this type of work;
+● Giving ourselves permission to experience fully any emotional reactions of which we
+are aware;
+● Finding ways to nurture and support ourselves;
+● Engaging in political work for social change;
+● Seeking out non-victim-related activities that provide hope and optimism
+
+Medeiros and Prochaska (1988): "optimistic perseverance”
+
+Self-care
+Self-care refers to strategies and practice of managing one’s own emotional labors,
+exposure to trauma, and overall well-being
+
+What do you do for self-care?
+
+Two categories and three levels of interventions
+●
+
+Primary (risk mitigation), secondary (more resilience), tertiary (clinical support)
+
+●
+
+Organizational
+(1) Wellness on-boarding
+(2) Resiliency training
+(3) Interpersonal clinical care
+
+●
+
+Technological
+(1) Preventing exposure
+(2) Reducing exposure
+(3) Supporting treatment
+
+Group exercise
+Discuss with one or two of your neighbors. Come up with hypothetical T&S workflow.
+
+-
+
+What are some organizational or technical approaches that would likely exacerbate
+emotional labor, cause secondary trauma, lead to burnout?
+
+-
+
+What are some good organizational or technical approaches that are more traumainformed?
+
+Concluding thoughts
+
+Summary
+Trust and safety inherently involves challenging material
+
+Organizations and individuals must navigate emotional labor, vicarious trauma,
+burnout
+
+Trauma-informed approach to organizations and technology can help
+- Recognize prevalence of trauma and its impact on tech experiences
+- Build socio-technical systems that avoid systems trauma
+- Infrastructure to help your T&S organization be productive and healthy
+Lots of resources from other communities that we can learn from
+
+Concluding thoughts from [McCann & Pearlman 1990]
+“There is a tremendous sense of personal meaning that evolves from
+knowing that we are involved in an important social problem by
+making a contribution toward ameliorating some of the destructive
+impact of violence on human lives.”
+
+“Although we may be sadder but wiser, it is important to acknowledge
+the many ways this important work has enriched our own lives as well
+as countless others.”
+
+

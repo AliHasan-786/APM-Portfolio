@@ -27,7 +27,7 @@ function HeroSection() {
           <span className="text-tiktok-cyan">-RAG</span>
         </h1>
         <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
-          An <strong className="text-white">Agentic Escalation Engine</strong> that intelligently routes content moderation decisions between AI auto-enforcement and human review — mitigating <strong className="text-tiktok-red">automation bias</strong> via cost-aware selective classification.
+          An <strong className="text-white">Agentic Escalation Engine</strong> that intelligently routes content moderation decisions between AI auto-enforcement and human review — inducing <strong className="text-tiktok-red">Appropriate Reliance</strong> via cost-aware selective classification and enforcing <strong className="text-tiktok-cyan">Counterfactual Fairness</strong>.
         </p>
         <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-4">
           <a href="#prototype" className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3 rounded-full font-bold text-base hover:bg-gray-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] w-full md:w-auto">
@@ -69,9 +69,9 @@ function ProblemSection() {
               <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4">
                 <Brain className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">LLM Hallucinations</h3>
+              <h3 className="text-lg font-bold text-white">Counterfactual Fairness</h3>
               <p className="text-sm text-zinc-400">
-                Passing all complex moderation exclusively to unconstrained LLMs generates high-profile errors. In complex policy domains like medical misinfo, hallucination rates jump to 17-33%.
+                Legacy classifiers struggle with counterfactual fairness (treating identical claims differently based on perturbed demographic markers). Bias Benchmarks (BBQ) prove we need smarter semantic anchoring.
               </p>
             </CardContent>
           </Card>
@@ -80,9 +80,9 @@ function ProblemSection() {
               <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 mb-4">
                 <Users className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">Automation Bias</h3>
+              <h3 className="text-lg font-bold text-white">Appropriate Reliance</h3>
               <p className="text-sm text-zinc-400">
-                When human operators are paired with highly accurate AI tools, they become cognitively passive. A simple "95% Toxicity" score causes blind approvals, negating HITL redundancy.
+                When human operators are paired with highly accurate AI tools, they become cognitively passive (Automation Bias). A simple "95% Toxicity" score causes blind approvals, negating HITL redundancy.
               </p>
             </CardContent>
           </Card>
@@ -106,7 +106,7 @@ function VisionSection() {
                   Current Trust & Safety ops are fundamentally <strong>reactive</strong>. Bad actors invent new evasion slang ("unalive", "corn", using 🔌 for drugs). It goes viral. The PM notices. The policy is updated. The damage is done.
                 </p>
                 <p className="text-zinc-300 leading-relaxed text-sm md:text-base">
-                  My vision for TikTok is shifting from reactive filtering to <strong>predictive policy generation</strong>. We can use isolated LLM "Red Teams" to aggressively mutate standard violations into Gen-Z slang, typos, and emoji-speak, constantly testing our classifiers during downtime. When accuracy drops, the system autonomously drafts prompt adjustments to catch emerging threats before they hit production.
+                  My vision for TikTok is shifting from reactive filtering to <strong>predictive policy generation</strong>. We can use isolated LLM "Red Teams" to aggressively mutate standard violations into Gen-Z slang, typos, and emoji-speak, constantly testing our classifiers during downtime. This effectively executes continuous <strong>Indirect Prompt Injection (BIPIA)</strong> testing to catch emerging threats before they hit production.
                 </p>
               </div>
               <div className="md:w-1/3 flex justify-center">
@@ -129,7 +129,7 @@ function HowItWorksSection() {
     { icon: <Layers className="w-6 h-6" />, title: "1. Content Ingested", desc: "A flagged video transcript or claim enters the pipeline." },
     { icon: <Brain className="w-6 h-6" />, title: "2. RAG Retrieval", desc: "Queries verified databases (DSA, CDC) to anchor the LLM." },
     { icon: <Gauge className="w-6 h-6" />, title: "3. Uncertainty Scored", desc: "Calculates Epistemic (policy) vs Aleatoric (evidence) uncertainty." },
-    { icon: <Zap className="w-6 h-6" />, title: "4. Cost-Aware Routing", desc: "High confidence auto-act. Low confidence routes to humans." },
+    { icon: <Zap className="w-6 h-6" />, title: "4. Cost-Aware Routing", desc: "High confidence auto-act. Edge cases escalate to humans to mandate Appropriate Reliance." },
   ];
 
   return (
@@ -365,7 +365,7 @@ function PMDashboardsSection() {
                 <div className="w-8 h-8 rounded-full border border-tiktok-cyan/50 text-tiktok-cyan flex items-center justify-center text-xs font-bold shrink-0">3</div>
                 <div>
                   <div className="text-sm font-bold text-tiktok-cyan">The Predictive Loop</div>
-                  <div className="text-xs text-zinc-500">Activate synthetic adversarial testing. Pipe Epistemic Uncertainty flags directly to Policy Teams to highlight fuzzy community guidelines.</div>
+                  <div className="text-xs text-zinc-500">Activate synthetic BIPIA adversarial testing. Establish EU DSA compliant feedback loops to pipe Epistemic Uncertainty flags to Policy Teams.</div>
                 </div>
               </div>
             </div>
