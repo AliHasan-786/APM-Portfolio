@@ -71,6 +71,11 @@ export function CreatorAegis() {
           <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
             Empowering TikTok creators with <strong className="text-white">Natural Language Comment Filtering</strong>. Move beyond maintaining lists of thousands of keywords to semantic, agentic self-moderation.
           </p>
+          <div className="pt-4">
+            <a href="/" className="inline-flex items-center justify-center gap-2 bg-zinc-900 border border-white/10 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-zinc-800 transition-all">
+              ← Back to TrustScore Infrastructure
+            </a>
+          </div>
         </div>
       </section>
 

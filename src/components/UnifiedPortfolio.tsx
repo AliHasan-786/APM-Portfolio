@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import Link from "next/link";
 import { processClaim, ModerationResult, AgentStep, TEST_CASES, TestCase } from "@/lib/simulator";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,9 +34,9 @@ function HeroSection() {
           <a href="#prototype" className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3 rounded-full font-bold text-base hover:bg-gray-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] w-full md:w-auto">
             Try the Live Prototype <ArrowDown className="w-4 h-4" />
           </a>
-          <a href="#roadmap" className="inline-flex items-center justify-center gap-2 bg-zinc-900 border border-white/10 text-white px-8 py-3 rounded-full font-bold text-base hover:bg-zinc-800 transition-all w-full md:w-auto">
-            Read Product Strategy
-          </a>
+          <Link href="/creator-aegis" className="inline-flex items-center justify-center gap-2 bg-zinc-900 border border-white/10 text-white px-8 py-3 rounded-full font-bold text-base hover:bg-zinc-800 transition-all w-full md:w-auto">
+            View Creator Aegis Feature <ChevronRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>
