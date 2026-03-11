@@ -2,9 +2,6 @@
 **An Interactive Product Management, AI/ML, and Platform Integrity Showcase**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://tiktok-apm-portfolio.vercel.app/) 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/) 
-[![Gemini](https://img.shields.io/badge/Google_Gemini-2.5_Flash-blue?style=for-the-badge&logo=google)](https://deepmind.google/technologies/gemini/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 ## 🎯 Executive Summary
 I built this comprehensive, full-stack application as a direct demonstration of my qualifications for the **Associate Product Manager - Safety Product** role at TikTok (San Jose). 
