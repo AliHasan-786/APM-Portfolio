@@ -1,50 +1,14 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenAI, Type, Schema, HarmCategory, HarmBlockThreshold } from '@google/genai';
+import OpenAI from 'openai';
 
-// Initialize the Gemini client
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-// Define the expected output schema for the LLM Performance Predictor (LPP)
-const lppSchema: Schema = {
-    type: Type.OBJECT,
-    properties: {
-        predictedAction: {
-            type: Type.STRING,
-            enum: ['Auto-Takedown', 'Auto-Approve', 'Escalate'],
-            description: 'The routing decision based on policy and confidence.'
-        },
-        confidenceScore: {
-            type: Type.NUMBER,
-            description: 'A decimal between 0.0 and 1.0 representing the model\'s internal confidence in its decision. Below 0.90 should generally Escalate.'
-        },
-        uncertaintyType: {
-            type: Type.STRING,
-            enum: ['Aleatoric', 'Epistemic', 'None'],
-            description: 'Aleatoric (missing factual evidence) or Epistemic (policy ambiguity/gap). Use None if confident.'
-        },
-        uncertaintyReason: {
-            type: Type.STRING,
-            description: 'If Escalate, explain exactly why the AI is confused or lacks context to make a definitive ruling.'
-        },
-        policyViolation: {
-            type: Type.STRING,
-            description: 'If Auto-Takedown, state the specific policy violated (e.g., "Violent Extremism", "Hate Speech").'
-        },
-        mockRagSources: {
-            type: Type.ARRAY,
-            items: {
-                type: Type.OBJECT,
-                properties: {
-                    source: { type: Type.STRING },
-                    content: { type: Type.STRING },
-                    relevanceScore: { type: Type.NUMBER }
-                }
-            },
-            description: 'Generate 1-3 highly realistic-sounding RAG document snippets that the system theoretically retrieved to make this decision.'
-        }
-    },
-    required: ['predictedAction', 'confidenceScore', 'uncertaintyType', 'mockRagSources']
-};
+const openai = new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
+    apiKey: process.env.OPENROUTER_API_KEY || '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',
+    defaultHeaders: {
+        "HTTP-Referer": "https://tiktok-apm-portfolio.vercel.app/",
+        "X-Title": "TikTok APM Portfolio"
+    }
+});
 
 export async function POST(request: Request) {
     try {
@@ -53,11 +17,6 @@ export async function POST(request: Request) {
 
         if (!claim) {
             return NextResponse.json({ error: 'Claim text is required' }, { status: 400 });
-        }
-
-        if (!process.env.GEMINI_API_KEY) {
-            console.error("GEMINI_API_KEY is not set in environment variables");
-            return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
         }
 
         const defaultInstruction = `
@@ -98,37 +57,46 @@ export async function POST(request: Request) {
          - uncertaintyType: Choose either "Aleatoric" (we lack the factual grounding/evidence to know if it's true) OR "Epistemic" (we lack a clear policy directive / policy gap for this specific nuance).
          - uncertaintyReason: Explain the gap explicitly for a human operator to read to prevent Automation Bias.
          - Generate mock RAG sources that CONFLICT or show the ambiguity.
-         
-      Always respond in the requested JSON schema.
+
+      You MUST output ONLY valid JSON using the exact following schema, with no markdown formatting:
+      {
+        "predictedAction": "Auto-Takedown" | "Auto-Approve" | "Escalate",
+        "confidenceScore": 0.0 to 1.0,
+        "uncertaintyType": "Aleatoric" | "Epistemic" | "None",
+        "uncertaintyReason": "If Escalate, explain exactly why...",
+        "policyViolation": "If Auto-Takedown, state the specific policy violated",
+        "mockRagSources": [
+            { "source": "string", "content": "string", "relevanceScore": 0.0 to 1.0 }
+        ]
+      }
     `;
 
         const systemInstruction = customInstruction || defaultInstruction;
 
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: `Evaluate this claim: "${claim}"`,
-            config: {
-                systemInstruction: systemInstruction,
-                responseMimeType: 'application/json',
-                responseSchema: lppSchema,
-                temperature: 0.2,
-                safetySettings: [
-                    { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-                    { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
-                    { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE },
-                    { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE }
-                ]
-            }
+        const response = await openai.chat.completions.create({
+            model: 'openai/gpt-oss-120b:free',
+            messages: [
+                { role: 'system', content: systemInstruction },
+                { role: 'user', content: `Evaluate this claim: "${claim}"` }
+            ],
+            temperature: 0.1,
+            response_format: { type: 'json_object' }
         });
 
-        const resultText = response.text;
-        if (!resultText) {
-            throw new Error("No text returned from Gemini");
+        const resultText = response.choices[0]?.message?.content;
+        if (!resultText) throw new Error("No text returned from OpenRouter");
+
+        // Attempt to parse just in case it wrapped it in markdown
+        let parsed;
+        try {
+            parsed = JSON.parse(resultText);
+        } catch (e) {
+            // Strip markdown block if model ignored the instruction
+            const cleaned = resultText.replace(/```json/g, '').replace(/```/g, '').trim();
+            parsed = JSON.parse(cleaned);
         }
 
-        const parsedResult = JSON.parse(resultText);
-
-        return NextResponse.json(parsedResult);
+        return NextResponse.json(parsed);
 
     } catch (error: any) {
         console.error('Error generating LPP assessment:', error);

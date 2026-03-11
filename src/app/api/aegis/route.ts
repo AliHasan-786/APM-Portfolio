@@ -1,27 +1,14 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenAI, Type, Schema, HarmCategory, HarmBlockThreshold } from '@google/genai';
+import OpenAI from 'openai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-const aegisSchema: Schema = {
-    type: Type.OBJECT,
-    properties: {
-        action: {
-            type: Type.STRING,
-            enum: ['Allow', 'Block'],
-            description: 'Whether to allow or block the comment based on the rules.'
-        },
-        matchedRule: {
-            type: Type.STRING,
-            description: 'If Blocked, cite the specific rule number that was violated.'
-        },
-        reasoning: {
-            type: Type.STRING,
-            description: 'A brief explanation of how the comment maps to the rule, catching evasions or implicit meanings.'
-        }
-    },
-    required: ['action', 'reasoning']
-};
+const openai = new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
+    apiKey: process.env.OPENROUTER_API_KEY || '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',
+    defaultHeaders: {
+        "HTTP-Referer": "https://tiktok-apm-portfolio.vercel.app/",
+        "X-Title": "TikTok APM Portfolio"
+    }
+});
 
 export async function POST(request: Request) {
     try {
@@ -29,15 +16,6 @@ export async function POST(request: Request) {
 
         if (!rules || !comment) {
             return NextResponse.json({ error: 'Rules and comment are required' }, { status: 400 });
-        }
-
-        if (!process.env.GEMINI_API_KEY) {
-            // Fallback for Vercel demo if key is missing
-            return NextResponse.json({
-                action: 'Block',
-                matchedRule: 'Rule 1',
-                reasoning: '(Mock Mode) Simulated block because Gemini API key is missing in production.'
-            });
         }
 
         const systemInstruction = `
@@ -49,29 +27,39 @@ export async function POST(request: Request) {
             
             Evaluate the incoming comment. Be highly attuned to semantic evasions, emoji usage, leetspeak, and passive-aggressive bullying that bypasses normal keyword filters.
             If it violates any rule, Block it. Otherwise, Allow it.
+
+            You MUST output ONLY valid JSON using the exact following schema, with no markdown formatting or other text:
+            {
+              "action": "Allow" | "Block",
+              "matchedRule": "If Blocked, cite the specific rule number that was violated, otherwise explain why it is allowed.",
+              "reasoning": "A brief explanation of how the comment maps to the rule, catching evasions or implicit meanings."
+            }
         `;
 
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: `Comment to evaluate: "${comment}"`,
-            config: {
-                systemInstruction,
-                responseMimeType: 'application/json',
-                responseSchema: aegisSchema,
-                temperature: 0.1,
-                safetySettings: [
-                    { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-                    { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
-                    { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE },
-                    { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE }
-                ]
-            }
+        const response = await openai.chat.completions.create({
+            model: 'openai/gpt-oss-120b:free',
+            messages: [
+                { role: 'system', content: systemInstruction },
+                { role: 'user', content: `Comment to evaluate: "${comment}"` }
+            ],
+            temperature: 0.1,
+            response_format: { type: 'json_object' }
         });
 
-        const resultText = response.text;
-        if (!resultText) throw new Error("No text returned from Gemini");
+        const resultText = response.choices[0]?.message?.content;
+        if (!resultText) throw new Error("No text returned from OpenRouter");
 
-        return NextResponse.json(JSON.parse(resultText));
+        // Attempt to parse just in case it wrapped it in markdown
+        let parsed;
+        try {
+            parsed = JSON.parse(resultText);
+        } catch (e) {
+            // Strip markdown block if model ignored the instruction
+            const cleaned = resultText.replace(/```json/g, '').replace(/```/g, '').trim();
+            parsed = JSON.parse(cleaned);
+        }
+
+        return NextResponse.json(parsed);
 
     } catch (error: any) {
         console.error('Error in Creator Aegis:', error);
