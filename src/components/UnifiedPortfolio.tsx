@@ -441,7 +441,7 @@ export function UnifiedPortfolio() {
           This artifact demonstrates full-stack product management: isolating a billion-scale business problem, designing system architecture, addressing latency tradeoffs, and writing production integration code.
         </p>
         <div className="flex justify-center gap-4 text-xs font-semibold uppercase tracking-widest text-zinc-400">
-          <a href="https://github.com/AliHasan-786/TrustScore" target="_blank" rel="noopener noreferrer" className="hover:text-brand-cyan transition-colors">GitHub Repository</a>
+          <a href="https://github.com/AliHasan-786/APM-Portfolio" target="_blank" rel="noopener noreferrer" className="hover:text-brand-cyan transition-colors">GitHub Repository</a>
         </div>
       </footer>
     </div>
