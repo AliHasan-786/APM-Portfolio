@@ -20,15 +20,15 @@ function HeroSection() {
   return (
     <section className="relative pt-20 pb-16 px-4 text-center overflow-hidden">
       <div className="max-w-4xl mx-auto space-y-6">
-        <Badge variant="outline" className="border-tiktok-cyan/40 text-tiktok-cyan px-4 py-1.5 text-sm uppercase tracking-widest font-semibold">
-          Trust & Safety Product Management Portfolio
+        <Badge variant="outline" className="border-brand-cyan/40 text-brand-cyan px-4 py-1.5 text-sm uppercase tracking-widest font-semibold">
+          APM Portfolio
         </Badge>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1]">
           <span className="text-white">TrustScore</span>
-          <span className="text-tiktok-cyan">-RAG</span>
+          <span className="text-brand-cyan">-RAG</span>
         </h1>
         <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
-          An <strong className="text-white">Agentic Escalation Engine</strong> that intelligently routes content moderation decisions between AI auto-enforcement and human review — inducing <strong className="text-tiktok-red">Appropriate Reliance</strong> via cost-aware selective classification and enforcing <strong className="text-tiktok-cyan">Counterfactual Fairness</strong>.
+          An <strong className="text-white">Agentic Escalation Engine</strong> that intelligently routes content moderation decisions between AI auto-enforcement and human review — inducing <strong className="text-brand-red">Appropriate Reliance</strong> via cost-aware selective classification and enforcing <strong className="text-brand-cyan">Counterfactual Fairness</strong>.
         </p>
         <div className="pt-8 flex flex-col md:flex-row items-center justify-center gap-4">
           <a href="#prototype" className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3 rounded-full font-bold text-base hover:bg-gray-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] w-full md:w-auto">
@@ -54,9 +54,9 @@ function ProblemSection() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="bg-zinc-900/50 border-white/10 hover:border-tiktok-cyan/30 transition-colors">
+          <Card className="bg-zinc-900/50 border-white/10 hover:border-brand-cyan/30 transition-colors">
             <CardContent className="pt-6 space-y-4">
-              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center text-tiktok-red mb-4">
+              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center text-brand-red mb-4">
                 <DollarSign className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-white">Scale & Cost</h3>
@@ -65,7 +65,7 @@ function ProblemSection() {
               </p>
             </CardContent>
           </Card>
-          <Card className="bg-zinc-900/50 border-white/10 hover:border-tiktok-cyan/30 transition-colors">
+          <Card className="bg-zinc-900/50 border-white/10 hover:border-brand-cyan/30 transition-colors">
             <CardContent className="pt-6 space-y-4">
               <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4">
                 <Brain className="w-6 h-6" />
@@ -76,7 +76,7 @@ function ProblemSection() {
               </p>
             </CardContent>
           </Card>
-          <Card className="bg-zinc-900/50 border-white/10 hover:border-tiktok-cyan/30 transition-colors">
+          <Card className="bg-zinc-900/50 border-white/10 hover:border-brand-cyan/30 transition-colors">
             <CardContent className="pt-6 space-y-4">
               <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 mb-4">
                 <Users className="w-6 h-6" />
@@ -97,24 +97,24 @@ function VisionSection() {
   return (
     <section className="py-16 px-4">
       <div className="max-w-5xl mx-auto">
-        <Card className="bg-gradient-to-br from-tiktok-cyan/10 via-black to-blue-900/20 border-tiktok-cyan/30">
+        <Card className="bg-gradient-to-br from-brand-cyan/10 via-black to-blue-900/20 border-brand-cyan/30">
           <CardContent className="p-8 md:p-12">
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1 space-y-4">
-                <Badge variant="outline" className="border-tiktok-cyan text-tiktok-cyan bg-tiktok-cyan/10">Product Insight</Badge>
+                <Badge variant="outline" className="border-brand-cyan text-brand-cyan bg-brand-cyan/10">Product Insight</Badge>
                 <h2 className="text-3xl font-bold text-white">The Predictive Policy Loop</h2>
                 <p className="text-zinc-300 leading-relaxed text-sm md:text-base">
                   Current Trust & Safety ops are fundamentally <strong>reactive</strong>. Bad actors invent new evasion slang ("unalive", "corn", using 🔌 for drugs). It goes viral. The PM notices. The policy is updated. The damage is done.
                 </p>
                 <p className="text-zinc-300 leading-relaxed text-sm md:text-base">
-                  My vision for TikTok is shifting from reactive filtering to <strong>predictive policy generation</strong>. We can use isolated LLM "Red Teams" to aggressively mutate standard violations into Gen-Z slang, typos, and emoji-speak, constantly testing our classifiers during downtime. This effectively executes continuous <strong>Indirect Prompt Injection (BIPIA)</strong> testing to catch emerging threats before they hit production.
+                  My vision is shifting from reactive filtering to <strong>predictive policy generation</strong>. We can use isolated LLM "Red Teams" to aggressively mutate standard violations into Gen-Z slang, typos, and emoji-speak, constantly testing our classifiers during downtime. This effectively executes continuous <strong>Indirect Prompt Injection (BIPIA)</strong> testing to catch emerging threats before they hit production.
                 </p>
               </div>
               <div className="md:w-1/3 flex justify-center">
-                <div className="relative w-48 h-48 rounded-full border border-dashed border-tiktok-cyan animate-[spin_20s_linear_infinite] flex items-center justify-center">
-                  <div className="absolute top-0 w-4 h-4 bg-tiktok-cyan rounded-full shadow-[0_0_10px_#25f4ee]" />
+                <div className="relative w-48 h-48 rounded-full border border-dashed border-brand-cyan animate-[spin_20s_linear_infinite] flex items-center justify-center">
+                  <div className="absolute top-0 w-4 h-4 bg-brand-cyan rounded-full shadow-[0_0_10px_#25f4ee]" />
                   <div className="absolute bottom-0 w-4 h-4 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]" />
-                  <RefreshCw className="w-12 h-12 text-tiktok-cyan absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[spin_5s_linear_infinite_reverse]" />
+                  <RefreshCw className="w-12 h-12 text-brand-cyan absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[spin_5s_linear_infinite_reverse]" />
                 </div>
               </div>
             </div>
@@ -177,7 +177,7 @@ function LivePrototypeSection({ runSimulation, claim, setClaim, selectedCase, ha
               key={tc.id}
               onClick={() => handleSelectCase(tc)}
               className={`text-left p-4 rounded-xl border transition-all ${selectedCase?.id === tc.id
-                ? "border-tiktok-cyan bg-tiktok-cyan/10 shadow-[0_0_15px_rgba(37,244,238,0.2)]"
+                ? "border-brand-cyan bg-brand-cyan/10 shadow-[0_0_15px_rgba(37,244,238,0.2)]"
                 : "border-white/10 bg-zinc-900/50 hover:border-white/20 hover:bg-zinc-800/50"
                 }`}
             >
@@ -192,7 +192,7 @@ function LivePrototypeSection({ runSimulation, claim, setClaim, selectedCase, ha
         <Card className="border-white/10 bg-zinc-900/50 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="flex items-center text-lg">
-              <Sparkles className="w-5 h-5 mr-2 text-tiktok-cyan" />
+              <Sparkles className="w-5 h-5 mr-2 text-brand-cyan" />
               Content Payload
             </CardTitle>
           </CardHeader>
@@ -201,7 +201,7 @@ function LivePrototypeSection({ runSimulation, claim, setClaim, selectedCase, ha
               value={claim}
               onChange={(e) => { setClaim(e.target.value); handleSelectCase(null); }}
               placeholder="Paste a video transcript, caption, or claim to evaluate..."
-              className="w-full min-h-[80px] p-4 rounded-xl bg-black border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-tiktok-cyan/50 resize-none font-mono text-sm leading-relaxed"
+              className="w-full min-h-[80px] p-4 rounded-xl bg-black border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 resize-none font-mono text-sm leading-relaxed"
             />
             <Button
               onClick={runSimulation}
@@ -224,7 +224,7 @@ function LivePrototypeSection({ runSimulation, claim, setClaim, selectedCase, ha
             <CardContent className="space-y-2 pt-4 p-4">
               {agentSteps.map((step: any, i: number) => (
                 <div key={i} className="flex items-center gap-3 py-1 px-2 rounded-lg">
-                  <div className={`w-2 h-2 rounded-full flex-shrink-0 ${step.status === 'done' ? 'bg-tiktok-cyan' : step.status === 'running' ? 'bg-yellow-400 animate-pulse' : 'bg-zinc-700'}`} />
+                  <div className={`w-2 h-2 rounded-full flex-shrink-0 ${step.status === 'done' ? 'bg-brand-cyan' : step.status === 'running' ? 'bg-yellow-400 animate-pulse' : 'bg-zinc-700'}`} />
                   <div className="flex-1 min-w-0">
                     <span className="text-xs font-medium text-white">{step.agent}</span>
                     <span className="text-[11px] text-zinc-500 ml-2">{step.action}</span>
@@ -241,13 +241,13 @@ function LivePrototypeSection({ runSimulation, claim, setClaim, selectedCase, ha
         {/* Result Display (Auto-Takedown / Auto-Approve) */}
         {result && result.assessment.predictedAction !== "Escalate" && (
           <Card className="border-white/10 bg-zinc-900/50 overflow-hidden animate-in slide-in-from-bottom-4 duration-500">
-            <div className={`h-1.5 w-full ${result.assessment.predictedAction === 'Auto-Takedown' ? 'bg-tiktok-red' : 'bg-tiktok-cyan'}`} />
+            <div className={`h-1.5 w-full ${result.assessment.predictedAction === 'Auto-Takedown' ? 'bg-brand-red' : 'bg-brand-cyan'}`} />
             <CardHeader>
               <CardTitle className="flex items-center text-xl">
                 {result.assessment.predictedAction === 'Auto-Takedown' ? (
-                  <><AlertCircle className="w-6 h-6 mr-2 text-tiktok-red" /> Auto-Takedown Initiated</>
+                  <><AlertCircle className="w-6 h-6 mr-2 text-brand-red" /> Auto-Takedown Initiated</>
                 ) : (
-                  <><CheckCircle2 className="w-6 h-6 mr-2 text-tiktok-cyan" /> Auto-Approve — No Violation Detected</>
+                  <><CheckCircle2 className="w-6 h-6 mr-2 text-brand-cyan" /> Auto-Approve — No Violation Detected</>
                 )}
               </CardTitle>
               <CardDescription>
@@ -281,7 +281,7 @@ function LivePrototypeSection({ runSimulation, claim, setClaim, selectedCase, ha
                 {result.retrievedEvidence.map((doc: any, i: number) => (
                   <Alert key={i} className="bg-black/40 border-white/10">
                     <Server className="h-4 w-4 text-zinc-400" />
-                    <AlertTitle className="text-tiktok-cyan font-mono text-xs">{doc.source} (Relevance: {doc.relevanceScore.toFixed(2)})</AlertTitle>
+                    <AlertTitle className="text-brand-cyan font-mono text-xs">{doc.source} (Relevance: {doc.relevanceScore.toFixed(2)})</AlertTitle>
                     <AlertDescription className="text-zinc-300 mt-2 text-sm">{doc.content}</AlertDescription>
                   </Alert>
                 ))}
@@ -307,7 +307,7 @@ function LivePrototypeSection({ runSimulation, claim, setClaim, selectedCase, ha
 
 function PMDashboardsSection() {
   const metrics = [
-    { icon: <Target className="w-5 h-5 text-tiktok-cyan" />, label: "Pre-Flight Precision", value: "87%", desc: "Ensures we aren't banning innocent creators" },
+    { icon: <Target className="w-5 h-5 text-brand-cyan" />, label: "Pre-Flight Precision", value: "87%", desc: "Ensures we aren't banning innocent creators" },
     { icon: <Eye className="w-5 h-5 text-blue-400" />, label: "Pre-Flight Recall", value: "94%", desc: "Ensures dangerous violations don't leak" },
     { icon: <DollarSign className="w-5 h-5 text-green-400" />, label: "OpEx Impact at Scale", value: "-$42k/day", desc: "Savings driven by false-positive reduction" },
     { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, label: "Human Override Rate", value: "12%", desc: "Ideal balance of AI trust and manual oversight" },
@@ -363,9 +363,9 @@ function PMDashboardsSection() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="w-8 h-8 rounded-full border border-tiktok-cyan/50 text-tiktok-cyan flex items-center justify-center text-xs font-bold shrink-0">3</div>
+                <div className="w-8 h-8 rounded-full border border-brand-cyan/50 text-brand-cyan flex items-center justify-center text-xs font-bold shrink-0">3</div>
                 <div>
-                  <div className="text-sm font-bold text-tiktok-cyan">The Predictive Loop</div>
+                  <div className="text-sm font-bold text-brand-cyan">The Predictive Loop</div>
                   <div className="text-xs text-zinc-500">Activate synthetic BIPIA adversarial testing. Establish EU DSA compliant feedback loops to pipe Epistemic Uncertainty flags to Policy Teams.</div>
                 </div>
               </div>
@@ -436,12 +436,12 @@ export function UnifiedPortfolio() {
 
       {/* Footer */}
       <footer id="roadmap" className="border-t border-white/10 py-12 px-4 text-center mt-12 bg-black">
-        <h2 className="text-lg font-bold mb-2">Designed & Built for TikTok APM</h2>
+        <h2 className="text-lg font-bold mb-2">Designed & Built for APM</h2>
         <p className="text-zinc-500 text-sm max-w-xl mx-auto mb-6">
           This artifact demonstrates full-stack product management: isolating a billion-scale business problem, designing system architecture, addressing latency tradeoffs, and writing production integration code.
         </p>
         <div className="flex justify-center gap-4 text-xs font-semibold uppercase tracking-widest text-zinc-400">
-          <a href="https://github.com/AliHasan-786/TrustScore" target="_blank" rel="noopener noreferrer" className="hover:text-tiktok-cyan transition-colors">GitHub Repository</a>
+          <a href="https://github.com/AliHasan-786/TrustScore" target="_blank" rel="noopener noreferrer" className="hover:text-brand-cyan transition-colors">GitHub Repository</a>
         </div>
       </footer>
     </div>

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TrustScore & Creator Aegis | TikTok Safety APM",
-  description: "Agentic Escalation Engine & Creator Safety Portfolio for TikTok Trust and Safety.",
+  title: "TrustScore & Creator Aegis | APM Portfolio",
+  description: "Agentic Escalation Engine & Creator Safety — APM Portfolio Project.",
 };
 
 export default function RootLayout({

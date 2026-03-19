@@ -154,11 +154,11 @@ export function PolicyOpsPlatform() {
       {/* Header */}
       <div className="mb-6 flex justify-between items-end border-b border-white/10 pb-4">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center"><ShieldAlert className="w-6 h-6 mr-2 text-tiktok-red" /> T&S Policy Operations Center</h1>
+          <h1 className="text-2xl font-bold text-white flex items-center"><ShieldAlert className="w-6 h-6 mr-2 text-brand-red" /> T&S Policy Operations Center</h1>
           <p className="text-sm text-zinc-500 mt-1">A/B Testing, Policy Alignment, and Blast-Radius Data Projections</p>
         </div>
         <div className="flex gap-3">
-          <Badge variant="outline" className="border-tiktok-cyan/30 text-tiktok-cyan">Live Gemini 2.5 Flash</Badge>
+          <Badge variant="outline" className="border-brand-cyan/30 text-brand-cyan">Live Gemini 2.5 Flash</Badge>
         </div>
       </div>
 
@@ -175,7 +175,7 @@ export function PolicyOpsPlatform() {
               <Tabs defaultValue="challenger" className="w-full">
                 <TabsList className="grid w-full grid-cols-2 bg-black">
                   <TabsTrigger value="baseline" className="text-xs">Baseline Policy A</TabsTrigger>
-                  <TabsTrigger value="challenger" className="text-xs text-tiktok-cyan">Challenger Policy B</TabsTrigger>
+                  <TabsTrigger value="challenger" className="text-xs text-brand-cyan">Challenger Policy B</TabsTrigger>
                 </TabsList>
                 <TabsContent value="baseline">
                   <Textarea
@@ -186,7 +186,7 @@ export function PolicyOpsPlatform() {
                 <TabsContent value="challenger">
                   <Textarea
                     value={challengerCode} onChange={(e) => setChallengerCode(e.target.value)}
-                    className="mt-2 h-[450px] bg-[#09090b] border-tiktok-cyan/30 font-mono text-xs text-tiktok-cyan/90 p-4 resize-none focus-visible:ring-tiktok-cyan/50"
+                    className="mt-2 h-[450px] bg-[#09090b] border-brand-cyan/30 font-mono text-xs text-brand-cyan/90 p-4 resize-none focus-visible:ring-brand-cyan/50"
                   />
                 </TabsContent>
               </Tabs>
@@ -217,7 +217,7 @@ export function PolicyOpsPlatform() {
               <div className="flex items-center gap-2">
                 <CardTitle className="text-sm font-semibold text-white">Execution Queue</CardTitle>
               </div>
-              <Button size="sm" onClick={runEvaluation} disabled={isRunning} className="bg-tiktok-red text-white hover:bg-red-600 h-8 text-xs font-bold">
+              <Button size="sm" onClick={runEvaluation} disabled={isRunning} className="bg-brand-red text-white hover:bg-red-600 h-8 text-xs font-bold">
                 {isRunning ? <RefreshCw className="w-3 h-3 animate-spin mr-2" /> : <Play className="w-3 h-3 mr-2" />}
                 RUN A/B BENCHMARK
               </Button>
@@ -265,7 +265,7 @@ export function PolicyOpsPlatform() {
                   <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">Precision (Accuracy)</div>
                   <div className="flex items-end gap-2">
                     <div className="text-2xl font-light text-zinc-400 line-through">{showResults ? baseM.precision.toFixed(1) : '--'}%</div>
-                    <div className="text-3xl font-bold text-tiktok-cyan">{showResults ? chalM.precision.toFixed(1) : '--'}%</div>
+                    <div className="text-3xl font-bold text-brand-cyan">{showResults ? chalM.precision.toFixed(1) : '--'}%</div>
                   </div>
                 </div>
                 <div>
@@ -297,7 +297,7 @@ export function PolicyOpsPlatform() {
                   ${showResults ? chalM.waste.toLocaleString() : '0'}
                 </div>
                 {showResults && chalM.waste !== baseM.waste && (
-                  <div className={`text-xs mt-2 font-bold ${chalM.waste < baseM.waste ? 'text-green-400' : 'text-tiktok-red'}`}>
+                  <div className={`text-xs mt-2 font-bold ${chalM.waste < baseM.waste ? 'text-green-400' : 'text-brand-red'}`}>
                     {chalM.waste < baseM.waste ? '↓ OPEX SAVINGS' : '↑ OPEX INCREASE'}: ${Math.abs(chalM.waste - baseM.waste).toLocaleString()} / day
                   </div>
                 )}

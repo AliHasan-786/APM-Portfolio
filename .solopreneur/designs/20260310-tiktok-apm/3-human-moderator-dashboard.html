@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { tiktokCyan: '#25f4ee', tiktokRed: '#fe2c55', cyberOrange: '#fb923c' } } } }
+        tailwind.config = { theme: { extend: { colors: { brandCyan: '#25f4ee', brandRed: '#fe2c55', cyberOrange: '#fb923c' } } } }
     </script>
 </head>
 
@@ -16,7 +16,7 @@
 
     <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
         <h1 class="text-3xl font-extrabold flex items-center gap-3">
-            <svg class="w-8 h-8 text-tiktokRed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-8 h-8 text-brandRed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
                 </path>
@@ -24,7 +24,7 @@
             High-Stakes Escalation Queue
         </h1>
         <div class="flex gap-3">
-            <span class="badge badge-error bg-tiktokRed/20 text-tiktokRed border-tiktokRed/50 p-4 font-bold">LPP
+            <span class="badge badge-error bg-brandRed/20 text-brandRed border-brandRed/50 p-4 font-bold">LPP
                 Confidence: 42.0%</span>
             <span
                 class="badge badge-warning bg-cyberOrange/10 text-cyberOrange border-cyberOrange/50 p-4 font-bold">Epistemic
@@ -59,13 +59,13 @@
                 <h2 class="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-4">Retrieved RAG Sources</h2>
                 <div class="space-y-4">
                     <div class="space-y-1">
-                        <div class="flex justify-between text-xs"><span class="text-tiktokCyan font-mono">EU Digital
+                        <div class="flex justify-between text-xs"><span class="text-brandCyan font-mono">EU Digital
                                 Services Act</span><span class="text-zinc-500">Rel: 0.94</span></div>
                         <div class="bg-black/50 p-3 rounded text-sm text-zinc-300">The DSA mandates explicit labeling of
                             AIGC. It does not completely outlaw...</div>
                     </div>
                     <div class="space-y-1 border-t border-white/5 pt-4">
-                        <div class="flex justify-between text-xs"><span class="text-tiktokCyan font-mono">TikTok
+                        <div class="flex justify-between text-xs"><span class="text-brandCyan font-mono">Platform
                                 Guidelines</span><span class="text-zinc-500">Rel: 0.88</span></div>
                         <div class="bg-black/50 p-3 rounded text-sm text-zinc-300">Unlabeled AI-generated media
                             depicting realistic scenes is prohibited...</div>
@@ -91,7 +91,7 @@
 
             <div class="grid grid-cols-3 gap-4">
                 <button
-                    class="btn h-24 bg-neutral-900 border-tiktokRed text-white hover:bg-tiktokRed flex flex-col justify-center gap-2">
+                    class="btn h-24 bg-neutral-900 border-brandRed text-white hover:bg-brandRed flex flex-col justify-center gap-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -108,7 +108,7 @@
                     Ineligible for FYF
                 </button>
                 <button
-                    class="btn h-24 bg-neutral-900 border-tiktokCyan text-white hover:bg-tiktokCyan/30 flex flex-col justify-center gap-2">
+                    class="btn h-24 bg-neutral-900 border-brandCyan text-white hover:bg-brandCyan/30 flex flex-col justify-center gap-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>

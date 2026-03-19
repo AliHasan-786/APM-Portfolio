@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { tiktokCyan: '#25f4ee', tiktokRed: '#fe2c55' } } } }
+        tailwind.config = { theme: { extend: { colors: { brandCyan: '#25f4ee', brandRed: '#fe2c55' } } } }
     </script>
 </head>
 
@@ -28,13 +28,13 @@
     <main class="max-w-4xl mx-auto p-6 mt-8 space-y-12">
         <header>
             <h1 class="text-4xl font-extrabold mb-4">Product Requirements Document (PRD)</h1>
-            <p class="text-xl text-tiktokCyan font-medium">TrustScore-RAG: Multi-Agent Moderation Triage</p>
+            <p class="text-xl text-brandCyan font-medium">TrustScore-RAG: Multi-Agent Moderation Triage</p>
         </header>
 
         <section class="space-y-4">
             <h2 class="text-2xl font-bold border-b border-white/10 pb-2">1. Objective & Problem Statement</h2>
             <p class="text-zinc-300 leading-relaxed">
-                As TikTok contends with rapidly evolving safety threats (FIMI networks, AIGC misinformation),
+                As platforms contend with rapidly evolving safety threats (FIMI networks, AIGC misinformation),
                 traditional classification models are inadequate. Relying entirely on unconstrained LLMs causes <strong
                     class="text-white">harmful hallucinations</strong> in deeply nuanced policy areas (e.g., civic
                 integrity vs satire). Passing all borderline text to human operators breaks Operational Expenditure
@@ -67,7 +67,7 @@
         <section class="space-y-4">
             <h2 class="text-2xl font-bold border-b border-white/10 pb-2">3. KPIs & Success Metrics</h2>
             <div class="grid grid-cols-3 gap-4">
-                <div class="bg-neutral-900 p-4 border border-white/10 border-t-tiktokCyan rounded-xl">
+                <div class="bg-neutral-900 p-4 border border-white/10 border-t-brandCyan rounded-xl">
                     <div class="text-sm text-zinc-500 uppercase mb-2">Primary Metric</div>
                     <div class="font-bold text-lg mb-1">Escalation Precision Rate</div>
                     <div class="text-sm text-zinc-400">Percentage of tickets flagged "Epistemic/Aleatoric" that actively
@@ -79,7 +79,7 @@
                     <div class="text-sm text-zinc-400">Total volume of "Auto-Routed" clear cases * (Avg human review
                         cost - Compute cost).</div>
                 </div>
-                <div class="bg-neutral-900 p-4 border border-white/10 border-t-tiktokRed rounded-xl">
+                <div class="bg-neutral-900 p-4 border border-white/10 border-t-brandRed rounded-xl">
                     <div class="text-sm text-zinc-500 uppercase mb-2">Health Guardrail</div>
                     <div class="font-bold text-lg mb-1">Human Override Rate</div>
                     <div class="text-sm text-zinc-400">If human override drops to near 0%, the XAI matrix failing at
@@ -91,8 +91,8 @@
         <section class="space-y-4">
             <h2 class="text-2xl font-bold border-b border-white/10 pb-2">4. GTM & Rollout Planner</h2>
             <ul class="steps steps-vertical lg:steps-horizontal w-full py-4 text-sm text-zinc-400 font-medium">
-                <li class="step step-primary text-tiktokCyan">Shadow Mode (Metrics Logging)</li>
-                <li class="step step-primary text-tiktokCyan">Tiger Team (Sr. Mods UI testing)</li>
+                <li class="step step-primary text-brandCyan">Shadow Mode (Metrics Logging)</li>
+                <li class="step step-primary text-brandCyan">Tiger Team (Sr. Mods UI testing)</li>
                 <li class="step">Gradual Geo-Scale (US/EU)</li>
                 <li class="step">Policy Feedback Loop</li>
             </ul>

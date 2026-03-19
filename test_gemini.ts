@@ -34,7 +34,7 @@ async function test() {
             config: {
                 systemInstruction: `
                     You are "Creator Aegis", a zero-shot natural language moderation filter running on edge devices.
-                    A TikTok creator has defined the following personal boundaries:
+                    A creator has defined the following personal boundaries:
                     RULES:
                     ${rules}
                     Evaluate the incoming comment. Be highly attuned to semantic evasions, emoji usage, leetspeak, and passive-aggressive bullying that bypasses normal keyword filters.

@@ -88,7 +88,7 @@ export function CreatorAegis() {
             <span className="text-purple-500">Aegis</span>
           </h1>
           <p className="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
-            Empowering TikTok creators with <strong className="text-white">Natural Language Comment Filtering</strong>. Move beyond maintaining lists of thousands of keywords to semantic, agentic self-moderation.
+            Empowering creators with <strong className="text-white">Natural Language Comment Filtering</strong>. Move beyond maintaining lists of thousands of keywords to semantic, agentic self-moderation.
           </p>
           <div className="pt-4">
             <a href="/trustscore" className="inline-flex items-center justify-center gap-2 bg-zinc-900 border border-white/10 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-zinc-800 transition-all">
@@ -111,7 +111,7 @@ export function CreatorAegis() {
           <Card className="bg-zinc-900/50 border-white/10">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-tiktok-cyan" /> User Value
+                <CheckCircle2 className="w-5 h-5 text-brand-cyan" /> User Value
               </CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-zinc-400">
@@ -140,7 +140,7 @@ export function CreatorAegis() {
         {/* Mockup Container */}
         <div className="bg-black border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.05)] mx-auto max-w-4xl flex flex-col md:flex-row">
 
-          {/* Left Sidebar (TikTok Settings style) */}
+          {/* Left Sidebar (Settings style) */}
           <div className="w-full md:w-64 border-r border-white/10 bg-zinc-950 p-6 hidden md:block">
             <h3 className="font-bold text-lg mb-6">Settings</h3>
             <nav className="space-y-4 text-sm text-zinc-400">

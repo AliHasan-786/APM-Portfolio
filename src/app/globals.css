@@ -45,8 +45,8 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --color-tiktok-red: #FE2C55;
-  --color-tiktok-cyan: #25F4EE;
+  --color-brand-red: #FE2C55;
+  --color-brand-cyan: #25F4EE;
   --animate-pulse-fast: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 

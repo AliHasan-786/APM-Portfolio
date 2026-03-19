@@ -36,7 +36,7 @@ export async function POST(request: Request) {
         const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
         const systemInstruction = `
             You are "Creator Aegis", a zero-shot natural language moderation filter running on edge devices.
-            A TikTok creator has defined the following personal boundaries:
+            A creator has defined the following personal boundaries:
             
             RULES:
             ${rules}

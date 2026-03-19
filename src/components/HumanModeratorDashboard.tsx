@@ -15,13 +15,13 @@ export function HumanModeratorDashboard({ data, onReset }: { data: ModerationRes
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div>
                     <h2 className="text-2xl font-bold flex items-center">
-                        <Lock className="w-6 h-6 mr-2 text-tiktok-red" />
+                        <Lock className="w-6 h-6 mr-2 text-brand-red" />
                         High-Stakes Escalation Queue
                     </h2>
                     <p className="text-zinc-400 text-sm mt-1">Reviewing ticket: #TCK-88192A</p>
                 </div>
                 <div className="flex gap-2">
-                    <Badge variant="destructive" className="bg-tiktok-red/20 text-tiktok-red hover:bg-tiktok-red/30 py-1">
+                    <Badge variant="destructive" className="bg-brand-red/20 text-brand-red hover:bg-brand-red/30 py-1">
                         LPP Confidence: {(data.assessment.confidenceScore * 100).toFixed(1)}%
                     </Badge>
                     <Badge variant="outline" className="border-orange-500/50 text-orange-400 py-1">
@@ -68,7 +68,7 @@ export function HumanModeratorDashboard({ data, onReset }: { data: ModerationRes
                                     {data.retrievedEvidence.map((doc, idx) => (
                                         <div key={idx} className="space-y-2">
                                             <div className="flex items-center justify-between">
-                                                <span className="text-xs font-mono text-tiktok-cyan">{doc.source}</span>
+                                                <span className="text-xs font-mono text-brand-cyan">{doc.source}</span>
                                                 <span className="text-xs text-zinc-500">Rel: {doc.relevanceScore}</span>
                                             </div>
                                             <p className="text-sm text-zinc-300 bg-black/40 p-3 rounded border border-white/5">{doc.content}</p>
@@ -105,10 +105,10 @@ export function HumanModeratorDashboard({ data, onReset }: { data: ModerationRes
                         <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <Button
                                 variant="destructive"
-                                className="h-24 flex flex-col items-center justify-center gap-2 bg-zinc-950 border border-tiktok-red hover:bg-tiktok-red hover:text-white group transition-all"
+                                className="h-24 flex flex-col items-center justify-center gap-2 bg-zinc-950 border border-brand-red hover:bg-brand-red hover:text-white group transition-all"
                                 onClick={onReset}
                             >
-                                <XCircle className="w-8 h-8 text-tiktok-red group-hover:text-white" />
+                                <XCircle className="w-8 h-8 text-brand-red group-hover:text-white" />
                                 <span>Remove Content</span>
                             </Button>
 
@@ -123,10 +123,10 @@ export function HumanModeratorDashboard({ data, onReset }: { data: ModerationRes
 
                             <Button
                                 variant="outline"
-                                className="h-24 flex flex-col items-center justify-center gap-2 bg-zinc-950 border-tiktok-cyan hover:bg-tiktok-cyan/20 hover:text-tiktok-cyan text-zinc-300 group transition-all"
+                                className="h-24 flex flex-col items-center justify-center gap-2 bg-zinc-950 border-brand-cyan hover:bg-brand-cyan/20 hover:text-brand-cyan text-zinc-300 group transition-all"
                                 onClick={onReset}
                             >
-                                <Check className="w-8 h-8 text-tiktok-cyan group-hover:text-tiktok-cyan" />
+                                <Check className="w-8 h-8 text-brand-cyan group-hover:text-brand-cyan" />
                                 <span>Approve / No Violation</span>
                             </Button>
                         </CardContent>

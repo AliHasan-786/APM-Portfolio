@@ -16,15 +16,15 @@ function HeroSection() {
   return (
     <section className="relative pt-20 pb-16 px-4 text-center overflow-hidden">
       <div className="max-w-4xl mx-auto space-y-6">
-        <Badge variant="outline" className="border-tiktok-cyan/40 text-tiktok-cyan px-4 py-1.5 text-sm">
-          TikTok Safety Product — APM Portfolio Project
+        <Badge variant="outline" className="border-brand-cyan/40 text-brand-cyan px-4 py-1.5 text-sm">
+          APM Portfolio Project
         </Badge>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
           <span className="text-white">TrustScore</span>
-          <span className="text-tiktok-cyan">-RAG</span>
+          <span className="text-brand-cyan">-RAG</span>
         </h1>
         <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
-          An <strong className="text-white">Agentic Escalation Engine</strong> that intelligently routes content moderation decisions between AI auto-enforcement and human review — mitigating <strong className="text-tiktok-red">automation bias</strong> via cost-aware selective classification.
+          An <strong className="text-white">Agentic Escalation Engine</strong> that intelligently routes content moderation decisions between AI auto-enforcement and human review — mitigating <strong className="text-brand-red">automation bias</strong> via cost-aware selective classification.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
           <Badge className="bg-zinc-800 text-zinc-300 border-zinc-700">LLMs</Badge>
@@ -59,13 +59,13 @@ function HowItWorksSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-3">How It Works</h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
-            This prototype simulates TikTok&apos;s backend content moderation triage. Select a test case below, and watch the multi-agent pipeline process it in real time.
+            This prototype simulates the backend content moderation triage pipeline. Select a test case below, and watch the multi-agent pipeline process it in real time.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {steps.map((s, i) => (
             <div key={i} className="relative bg-zinc-900/50 border border-white/10 rounded-xl p-6 text-center space-y-3">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-tiktok-cyan/10 text-tiktok-cyan mb-2">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-cyan/10 text-brand-cyan mb-2">
                 {s.icon}
               </div>
               <h3 className="font-semibold text-white">{s.title}</h3>
@@ -84,7 +84,7 @@ function HowItWorksSection() {
 /* ─── KPI Metrics Bar ─── */
 function MetricsBar() {
   const metrics = [
-    { icon: <Target className="w-5 h-5 text-tiktok-cyan" />, label: "Escalation Precision Rate", value: "87%", desc: "Ambiguous cases correctly routed to humans" },
+    { icon: <Target className="w-5 h-5 text-brand-cyan" />, label: "Escalation Precision Rate", value: "87%", desc: "Ambiguous cases correctly routed to humans" },
     { icon: <DollarSign className="w-5 h-5 text-green-400" />, label: "Cost per 1k Actions", value: "$14.20", desc: "vs. $42.00 fully manual baseline" },
     { icon: <TrendingUp className="w-5 h-5 text-orange-400" />, label: "Human Override Rate", value: "12%", desc: "Active disagreements (anti-automation-bias gauge)" },
     { icon: <Clock className="w-5 h-5 text-purple-400" />, label: "Avg. TTFT Latency", value: "2.1s", desc: "Time to first routing decision" },
@@ -115,7 +115,7 @@ function PRDSection() {
     <section id="prd" className="py-16 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
         <div className="text-center mb-8">
-          <Badge variant="outline" className="border-tiktok-red/40 text-tiktok-red mb-4">
+          <Badge variant="outline" className="border-brand-red/40 text-brand-red mb-4">
             <FileText className="w-3 h-3 mr-1" /> Product Requirements Document
           </Badge>
           <h2 className="text-3xl font-bold">Product Strategy & PM Artifacts</h2>
@@ -124,10 +124,10 @@ function PRDSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="bg-zinc-900/50 border-white/10">
             <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2"><ShieldAlert className="w-5 h-5 text-tiktok-red" /> Problem Statement</CardTitle>
+              <CardTitle className="text-lg flex items-center gap-2"><ShieldAlert className="w-5 h-5 text-brand-red" /> Problem Statement</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-zinc-300 leading-relaxed">
-              <p><strong className="text-white">Scale & Cost:</strong> TikTok processes hundreds of millions of moderation actions daily. Routing every borderline case to human reviewers breaks operational budgets and introduces multi-second latency.</p>
+              <p><strong className="text-white">Scale & Cost:</strong> Large platforms process hundreds of millions of moderation actions daily. Routing every borderline case to human reviewers breaks operational budgets and introduces multi-second latency.</p>
               <p><strong className="text-white">LLM Hallucinations:</strong> Unconstrained LLMs hallucinate at 17–33% on complex policy reasoning tasks, generating high-profile enforcement errors.</p>
               <p><strong className="text-white">Automation Bias:</strong> When AI accuracy exceeds 93%, human operators become cognitively passive — blindly approving AI recommendations and negating HITL oversight.</p>
             </CardContent>
@@ -135,10 +135,10 @@ function PRDSection() {
 
           <Card className="bg-zinc-900/50 border-white/10">
             <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2"><Activity className="w-5 h-5 text-tiktok-cyan" /> Definition of Success (KPIs)</CardTitle>
+              <CardTitle className="text-lg flex items-center gap-2"><Activity className="w-5 h-5 text-brand-cyan" /> Definition of Success (KPIs)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-zinc-300 leading-relaxed">
-              <p><strong className="text-tiktok-cyan">Primary — Escalation Precision Rate:</strong> % of genuinely ambiguous cases correctly routed to humans, directly impacting review efficiency.</p>
+              <p><strong className="text-brand-cyan">Primary — Escalation Precision Rate:</strong> % of genuinely ambiguous cases correctly routed to humans, directly impacting review efficiency.</p>
               <p><strong className="text-green-400">Secondary — Cost per 1k Actions:</strong> Measurable financial savings from auto-routing obvious high-confidence cases.</p>
               <p><strong className="text-orange-400">Guardrail — Human Override Rate:</strong> How often moderators disagree with AI partial assessments. Zero = severe automation bias; 100% = degraded classifier.</p>
             </CardContent>
@@ -234,7 +234,7 @@ export function TriageSimulator() {
                 key={tc.id}
                 onClick={() => handleSelectCase(tc)}
                 className={`text-left p-4 rounded-xl border transition-all ${selectedCase?.id === tc.id
-                  ? "border-tiktok-cyan bg-tiktok-cyan/10 shadow-[0_0_15px_rgba(37,244,238,0.2)]"
+                  ? "border-brand-cyan bg-brand-cyan/10 shadow-[0_0_15px_rgba(37,244,238,0.2)]"
                   : "border-white/10 bg-zinc-900/50 hover:border-white/20 hover:bg-zinc-800/50"
                   }`}
               >
@@ -249,11 +249,11 @@ export function TriageSimulator() {
           <Card className="border-white/10 bg-black/60 backdrop-blur-xl">
             <CardHeader>
               <CardTitle className="flex items-center text-xl">
-                <Sparkles className="w-5 h-5 mr-2 text-tiktok-cyan" />
+                <Sparkles className="w-5 h-5 mr-2 text-brand-cyan" />
                 Input Pipeline
               </CardTitle>
               <CardDescription>
-                The text below will be evaluated against TikTok&apos;s Community Guidelines via the agentic RAG pipeline.
+                The text below will be evaluated against platform Community Guidelines via the agentic RAG pipeline.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -262,7 +262,7 @@ export function TriageSimulator() {
                 onChange={(e) => { setClaim(e.target.value); setSelectedCase(null); }}
                 placeholder="Paste a video transcript, caption, or claim to evaluate..."
                 aria-label="Video transcript or claim input"
-                className="w-full min-h-[100px] p-4 rounded-xl bg-zinc-900 border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-tiktok-cyan/50 resize-none font-mono text-sm leading-relaxed"
+                className="w-full min-h-[100px] p-4 rounded-xl bg-zinc-900 border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 resize-none font-mono text-sm leading-relaxed"
               />
               <Button
                 onClick={runSimulation}
@@ -285,7 +285,7 @@ export function TriageSimulator() {
               <CardContent className="space-y-2">
                 {agentSteps.map((step, i) => (
                   <div key={i} className="flex items-center gap-3 py-2 px-3 rounded-lg bg-black/30">
-                    <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${step.status === 'done' ? 'bg-tiktok-cyan' : step.status === 'running' ? 'bg-yellow-400 animate-pulse' : 'bg-zinc-700'}`} />
+                    <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${step.status === 'done' ? 'bg-brand-cyan' : step.status === 'running' ? 'bg-yellow-400 animate-pulse' : 'bg-zinc-700'}`} />
                     <div className="flex-1 min-w-0">
                       <span className="text-sm font-medium text-white">{step.agent}</span>
                       <span className="text-xs text-zinc-500 ml-2">{step.action}</span>
@@ -302,13 +302,13 @@ export function TriageSimulator() {
           {/* Result Display (Auto-Takedown / Auto-Approve) */}
           {result && result.assessment.predictedAction !== "Escalate" && (
             <Card className="border-white/10 bg-zinc-900/50 overflow-hidden animate-in slide-in-from-bottom-4 duration-500">
-              <div className={`h-1.5 w-full ${result.assessment.predictedAction === 'Auto-Takedown' ? 'bg-tiktok-red' : 'bg-tiktok-cyan'}`} />
+              <div className={`h-1.5 w-full ${result.assessment.predictedAction === 'Auto-Takedown' ? 'bg-brand-red' : 'bg-brand-cyan'}`} />
               <CardHeader>
                 <CardTitle className="flex items-center text-xl">
                   {result.assessment.predictedAction === 'Auto-Takedown' ? (
-                    <><AlertCircle className="w-6 h-6 mr-2 text-tiktok-red" /> Auto-Takedown Initiated</>
+                    <><AlertCircle className="w-6 h-6 mr-2 text-brand-red" /> Auto-Takedown Initiated</>
                   ) : (
-                    <><CheckCircle2 className="w-6 h-6 mr-2 text-tiktok-cyan" /> Auto-Approve — No Violation Detected</>
+                    <><CheckCircle2 className="w-6 h-6 mr-2 text-brand-cyan" /> Auto-Approve — No Violation Detected</>
                   )}
                 </CardTitle>
                 <CardDescription>
@@ -342,7 +342,7 @@ export function TriageSimulator() {
                   {result.retrievedEvidence.map((doc, i) => (
                     <Alert key={i} className="bg-black/40 border-white/10">
                       <Server className="h-4 w-4 text-zinc-400" />
-                      <AlertTitle className="text-tiktok-cyan font-mono text-xs">{doc.source} (Relevance: {doc.relevanceScore.toFixed(2)})</AlertTitle>
+                      <AlertTitle className="text-brand-cyan font-mono text-xs">{doc.source} (Relevance: {doc.relevanceScore.toFixed(2)})</AlertTitle>
                       <AlertDescription className="text-zinc-300 mt-2 text-sm">{doc.content}</AlertDescription>
                     </Alert>
                   ))}
@@ -366,7 +366,7 @@ export function TriageSimulator() {
           TrustScore-RAG — Built as a portfolio demonstration of Product Management, Trust & Safety Architecture, and LLM-system design proficiency.
         </p>
         <p className="text-zinc-600 text-xs mt-2">
-          Not affiliated with TikTok or ByteDance. Data is simulated for demonstration purposes.
+          Data is simulated for demonstration purposes.
         </p>
       </footer>
     </>

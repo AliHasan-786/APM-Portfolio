@@ -1,4 +1,4 @@
-# Design Brief: TrustScore-RAG (TikTok APM Portfolio)
+# Design Brief: TrustScore-RAG (Trust & Safety APM Portfolio)
 
 ## User Flow
 
@@ -24,13 +24,13 @@
 1. **1-landing-and-concept.html**: Hero section explaining the value prop "Agentic Escalation Engine mitigating automation bias via cost-aware selective classification" with a visual breakdown of the multi-agent pipeline.
 2. **2-triage-simulator.html**: The core interactive simulator interface where the recruiter can select JD-aligned test cases (e.g., civic integrity, medical misinformation) and watch the RAG pipeline run.
 3. **3-human-moderator-dashboard.html**: The XAI (Explainable AI) dashboard shown to operators during high-uncertainty escalations, detailing policy ambiguity vs. evidence deficits.
-4. **4-prd.html**: An embedded, highly detailed PM requirements document demonstrating mastery of TikTok's scale, latency trade-offs (TTFT), false-positive mitigation, and cross-functional rollout strategies.
+4. **4-prd.html**: An embedded, highly detailed PM requirements document demonstrating mastery of platform scale, latency trade-offs (TTFT), false-positive mitigation, and cross-functional rollout strategies.
 
 ## Shared Visual Direction
-- **Theme**: Dark Mode (Glassmorphism & Neon accents) mirroring TikTok's aesthetic.
+- **Theme**: Dark Mode (Glassmorphism & Neon accents) using a dark glassmorphic aesthetic.
 - **Color Palette**:
   - Backgrounds: `#000000`, Deep Zinc (`#18181b`)
-  - Accents: TikTok Cyan (`#25f4ee`), TikTok Red (`#fe2c55`)
+  - Accents: Brand Cyan (`#25f4ee`), Brand Red (`#fe2c55`)
   - Alerts: Cyber Orange (`#fb923c`) for uncertainty flags.
   - Text: White (`#ffffff`), Zinc (`#a1a1aa`, `#d4d4d8`)
 - **Typography**: Inter / sans-serif. Clean, highly legible UI typography.
