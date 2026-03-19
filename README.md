@@ -2,7 +2,6 @@
 **An Interactive Product Management, AI/ML, and Platform Integrity Showcase**
 
 ## 🎯 Executive Summary
-A comprehensive, full-stack application demonstrating qualifications for an **Associate Product Manager - Safety Product** role.
 
 This portfolio proves the ability to translate complex policy challenges into scalable, user-centric product solutions. It specifically demonstrates practical experience with **Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), Human-in-the-Loop (HITL) workflows, platform integrity logic, and data-driven product metrics.**
 
