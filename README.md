@@ -1,6 +1,10 @@
 # APM Portfolio
 **An Interactive Product Management, AI/ML, and Platform Integrity Showcase**
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://apm-portfolio-pearl.vercel.app)
+
+**SEE HERE: https://apm-portfolio-pearl.vercel.app**
+
 ## 🎯 Executive Summary
 
 This portfolio proves the ability to translate complex policy challenges into scalable, user-centric product solutions. It specifically demonstrates practical experience with **Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), Human-in-the-Loop (HITL) workflows, platform integrity logic, and data-driven product metrics.**
